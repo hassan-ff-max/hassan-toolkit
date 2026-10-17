@@ -438,6 +438,22 @@
         .btn-apk { background: linear-gradient(90deg, #00e6a8, #27c93f); color: #000; }
         .btn-bot { background: linear-gradient(90deg, #11998e, #38ef7d); color: #000; }
 
+        /* RGB ANIMATION FOR TEXT */
+        .rgb-text {
+            font-weight: bold;
+            font-style: italic;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bf7, #7a00ff, #ff00c8, #ff0000);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: rgbFlow 2.5s linear infinite;
+        }
+
+        @keyframes rgbFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 300% center; }
+        }
+
         /* ==========================================
            CONNECT & SOCIAL SECTION
            ========================================== */
@@ -918,7 +934,7 @@
             <div class="tool-card" data-id="vip-cool-wire">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'VIP COOL WIRE V39 MAIN ID', 'https://www.mediafire.com/file/vmeb5cetd02zn6l/%25F0%259D%2590 me%25F0%259D%2590%2588%25F0%259D%2590%2590+%25F0%259D%2590%2582%25F0%259D%2590%2592%25F0%259D%2590%2592%25F0%259D%2590%258B+%25F0%259D%2590%2596%25F0%259D%2590%2588%25F0%259D%2590%2591%25F0%259D%2590%2584+%25F0%259F%259A%25AC.7z/file', true)"></i>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'VIP COOL WIRE V39 MAIN ID', 'https://www.mediafire.com/file/vmeb5cetd02zn6l/%25F0%259D%2590%2595%25F0%259D%2590%2588%25F0%259D%2590%2590+%25F0%259D%2590%2582%25F0%259D%2590%2592%25F0%259D%2590%2592%25F0%259D%2590%258B+%25F0%259D%2590%2596%25F0%259D%2590%2588%25F0%259D%2590%2591%25F0%259D%2590%2584+%25F0%259F%259A%25AC.7z/file', true)"></i>
                     <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
                 </div>
                 <div class="tool-content">
@@ -1136,7 +1152,7 @@
                 </div>
             </div>
 
-            <!-- RESOURCE TOOL 8 -->
+            <!-- RESOURCE TOOL 8 (PEHLE KA LAST TOOL) -->
             <div class="tool-card" data-id="new-tool-8">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1151,6 +1167,26 @@
                         <div class="link-status" data-url="https://drive.google.com/drive/folders/16pVd97eGDbq-l0kBnXmJjWl1ZkGMhqpd"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
                     <a href="https://drive.google.com/drive/folders/16pVd97eGDbq-l0kBnXmJjWl1ZkGMhqpd" target="_blank" class="btn-launch btn-vali"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL ADDED AT THE VERY END AS REQUESTED -->
+            <div class="tool-card" data-id="hassan-ttvd-web">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'HASSAN TIKTOK VIDEO DOWNLOADER', 'https://hassan-ttvd.vercel.app/', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title" style="font-size: 11px;">HASSAN TIKTOK VIDEO DOWNLOADER</div>
+                        <span class="badge-new badge-tt">WEB TOOL</span>
+                        <div class="tool-desc">
+                            HERE MY NEW PERSONAL TIKTOK VIDEO DOWNLOADER WEBSITE FOR YOU <span class="rgb-text">(BY HASSAN FF)</span>
+                        </div>
+                        <div class="link-status" data-url="https://hassan-ttvd.vercel.app/"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://hassan-ttvd.vercel.app/" target="_blank" class="btn-launch btn-tt"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Site</a>
                 </div>
             </div>
         </div>
@@ -1281,7 +1317,7 @@
        JAVASCRIPT LOGIC & API CONTROLLERS
        ========================================== -->
     <script>
-        const introMessage = "HELLO ASALAMUALAIKUM.\n\nI AM HASSAN.\n\nTHE DEVELOPER OF THIS TOOLKIT.\n\nNEW TOOLS & FIXED TIKTOK DL READY! 🔥";
+        const introMessage = "HELLO ASALAMUALAIKUM.\n\nI AM HASSAN.\n\nTHE DEVELOPER OF THIS TOOLKIT.\n\nNEW UPDATED THING: ADDED NEW TIKTOK VIDEO DOWNLOADER LINK 🔥. \n\nNEW UPDATES COMING SOON...";
 
         window.addEventListener('load', () => {
             startTypewriterSequence();
