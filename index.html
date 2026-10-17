@@ -18,16 +18,38 @@
             --subtext-color: #888;
             --search-bg: rgba(255, 255, 255, 0.05);
             --accent-orange: #ff7b00;
+            --glow-color: rgba(255, 123, 0, 0.25);
+            --active-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         .light-mode {
-            --bg-color: #f4f6f9;
-            --text-color: #111111;
-            --card-bg: rgba(0, 0, 0, 0.03);
-            --card-border: rgba(0, 0, 0, 0.08);
-            --subtext-color: #555;
-            --search-bg: rgba(0, 0, 0, 0.05);
+            --bg-color: #f4f6f9 !important;
+            --text-color: #111111 !important;
+            --card-bg: rgba(0, 0, 0, 0.04) !important;
+            --card-border: rgba(0, 0, 0, 0.12) !important;
+            --subtext-color: #555555 !important;
+            --search-bg: rgba(0, 0, 0, 0.06) !important;
         }
+
+        /* CUSTOM THEME OVERRIDES */
+        body[data-theme="cyan-glow"] { --bg-color: #03141a; --text-color: #e0ffff; --accent-orange: #00f3ff; --glow-color: rgba(0,243,255,0.4); }
+        body[data-theme="golden"] { --bg-color: #171302; --text-color: #fff8dc; --accent-orange: #ffd700; --glow-color: rgba(255,215,0,0.3); }
+        body[data-theme="black"] { --bg-color: #000000; --text-color: #ffffff; --card-bg: #111111; --card-border: #222222; --accent-orange: #ffffff; }
+        body[data-theme="white"] { --bg-color: #ffffff; --text-color: #000000; --card-bg: #f0f0f0; --card-border: #cccccc; --subtext-color: #444; --search-bg: #e0e0e0; --accent-orange: #000000; }
+        body[data-theme="purple"] { --bg-color: #12031a; --text-color: #f3e5f5; --accent-orange: #9c27b0; --glow-color: rgba(156,39,176,0.3); }
+        body[data-theme="pink"] { --bg-color: #1a030d; --text-color: #fce4ec; --accent-orange: #e91e63; --glow-color: rgba(233,30,99,0.3); }
+        body[data-theme="red"] { --bg-color: #1a0303; --text-color: #ffebee; --accent-orange: #f44336; --glow-color: rgba(244,67,54,0.3); }
+        body[data-theme="orange"] { --bg-color: #1a0c03; --text-color: #fff3e0; --accent-orange: #ff9800; --glow-color: rgba(255,152,0,0.3); }
+        body[data-theme="yellow"] { --bg-color: #1a1803; --text-color: #fffde7; --accent-orange: #ffeb3b; --glow-color: rgba(255,235,59,0.3); }
+        body[data-theme="brown"] { --bg-color: #140b05; --text-color: #efebe9; --accent-orange: #795548; --glow-color: rgba(121,85,72,0.3); }
+        body[data-theme="blue"] { --bg-color: #030a1a; --text-color: #e3f2fd; --accent-orange: #2196f3; --glow-color: rgba(33,150,243,0.3); }
+        body[data-theme="g-blue"] { --bg-color: #020d24; --text-color: #e0f2fe; --accent-orange: #00a2ff; --glow-color: rgba(0,162,255,0.5); }
+        body[data-theme="green"] { --bg-color: #031a08; --text-color: #e8f5e9; --accent-orange: #4caf50; --glow-color: rgba(76,175,80,0.3); }
+        body[data-theme="g-green"] { --bg-color: #02240b; --text-color: #dcffe4; --accent-orange: #00ff44; --glow-color: rgba(0,255,68,0.5); }
+        body[data-theme="crimson-glow"] { --bg-color: #1a0005; --text-color: #fff0f3; --accent-orange: #ff003c; --glow-color: rgba(255,0,60,0.5); }
+        body[data-theme="neon-violet"] { --bg-color: #0f001a; --text-color: #f5e6ff; --accent-orange: #bd00ff; --glow-color: rgba(189,0,255,0.5); }
+        body[data-theme="magenta-glow"] { --bg-color: #1a0018; --text-color: #ffe6fd; --accent-orange: #ff00d4; --glow-color: rgba(255,0,212,0.5); }
+        body[data-theme="cyber-teal"] { --bg-color: #001a18; --text-color: #e6ffff; --accent-orange: #00ffd5; --glow-color: rgba(0,255,213,0.5); }
 
         /* ==========================================
            GLOBAL RESET & BASE STYLES
@@ -36,7 +58,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: var(--active-font-family);
             transition: background 0.3s ease, color 0.3s ease;
         }
 
@@ -48,6 +70,16 @@
             position: relative;
         }
 
+        /* Dynamic Toolkit Fonts Overrides */
+        body[data-toolkit-font="bold"] * { font-weight: 800 !important; }
+        body[data-toolkit-font="italic"] * { font-style: italic !important; }
+        body[data-toolkit-font="bold-italic"] * { font-weight: 800 !important; font-style: italic !important; }
+        body[data-toolkit-font="monospace"] * { font-family: 'Courier New', Courier, monospace !important; }
+        body[data-toolkit-font="cursive"] * { font-family: 'Comic Sans MS', 'Brush Script MT', cursive !important; }
+        body[data-toolkit-font="gothic"] * { font-family: 'Impact', 'Arial Black', sans-serif !important; }
+        body[data-toolkit-font="falcon"] * { font-family: 'Trebuchet MS', 'Arial Bold', sans-serif !important; letter-spacing: 1.5px !important; text-transform: uppercase !important; }
+        body[data-toolkit-font="serif"] * { font-family: 'Georgia', 'Times New Roman', serif !important; }
+
         /* ==========================================
            BACKGROUND AMBIENT GLOW EFFECT
            ========================================== */
@@ -58,7 +90,7 @@
             transform: translate(-50%, -50%);
             width: 350px;
             height: 350px;
-            background: linear-gradient(135deg, rgba(255, 123, 0, 0.25), rgba(255, 255, 255, 0.15));
+            background: linear-gradient(135deg, var(--glow-color), rgba(255, 255, 255, 0.15));
             filter: blur(130px);
             border-radius: 50%;
             pointer-events: none;
@@ -66,7 +98,7 @@
         }
 
         /* ==========================================
-           INTRO SPLASH SCREEN WITH TYPEWRITER
+           INTRO SPLASH SCREEN WITH TYPEWRITER & CHANNELS
            ========================================== */
         #intro-screen {
             position: fixed;
@@ -164,28 +196,61 @@
             flex-shrink: 0;
         }
 
-        .intro-fire-message {
-            margin-top: 20px;
-            font-weight: bold;
-            font-style: italic;
+        .cyan-glow-message {
+            margin-top: 18px;
+            font-weight: 800;
             font-size: 13px;
             max-width: 380px;
-            line-height: 1.6;
-            letter-spacing: 0.8px;
-            background: linear-gradient(90deg, #ff4500, #ff8c00, #ff0000, #ffbe00);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: fireGlow 2s linear infinite;
-            display: inline-block;
-            border-right: 2px solid #ff7b00;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 40px #0088ff;
+            animation: cyanPulse 1.8s ease-in-out infinite alternate;
         }
 
-        @keyframes fireGlow {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
+        @keyframes cyanPulse {
+            0% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 20px #00ffff; transform: scale(0.98); }
+            100% { text-shadow: 0 0 10px #00ffff, 0 0 25px #00ffff, 0 0 40px #00a2ff, 0 0 60px #00d2ff; transform: scale(1.02); }
+        }
+
+        .intro-channels-box {
+            margin-top: 15px;
+            width: 100%;
+            max-width: 360px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .intro-channel-btn {
+            padding: 10px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-tg-1 { background: linear-gradient(90deg, #229ED9, #0088cc); }
+        .btn-tg-2 { background: linear-gradient(90deg, #8a2be2, #4a40ff); }
+        .btn-wa-3 { background: linear-gradient(90deg, #25D366, #128C7E); }
+
+        .btn-close-intro {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ff7b00, #ff4500);
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4);
         }
 
         /* ==========================================
@@ -204,6 +269,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0 20px 0;
+            position: relative;
         }
 
         .header-brand {
@@ -226,11 +292,173 @@
 
         .header-icons {
             display: flex;
-            gap: 15px;
-            font-size: 18px;
+            gap: 12px;
+            font-size: 16px;
             cursor: pointer;
             color: var(--subtext-color);
             align-items: center;
+        }
+
+        .saved-btn-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.06);
+            padding: 5px 10px;
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            color: #ffd700;
+        }
+
+        .saved-dot-badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #27c93f;
+            border: 2px solid var(--bg-color);
+        }
+
+        .saved-dot-badge.unread {
+            background-color: #ff003c;
+            box-shadow: 0 0 8px #ff003c;
+            animation: badgeGlow 1.2s infinite alternate;
+        }
+
+        @keyframes badgeGlow {
+            0% { transform: scale(0.9); box-shadow: 0 0 4px #ff003c; }
+            100% { transform: scale(1.2); box-shadow: 0 0 10px #ff003c; }
+        }
+
+        /* CLEAN POPUP MODAL FOR 3-DOTS MENU */
+        .dots-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 20000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .dots-modal-content {
+            background: #0f131f;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 380px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+            padding: 20px;
+        }
+
+        .dots-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 15px;
+            color: #fff;
+        }
+
+        .dots-modal-close {
+            cursor: pointer;
+            color: #ff4757;
+            font-size: 18px;
+        }
+
+        .dots-menu-item {
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            cursor: pointer;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+
+        .dots-menu-item:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .menu-heading {
+            margin: 15px 0 8px 0;
+            font-size: 11px;
+            font-weight: bold;
+            color: #aaa;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .color-grid-menu {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .color-chip {
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #fff;
+            transition: transform 0.2s;
+        }
+
+        .color-chip:hover {
+            transform: scale(1.05);
+        }
+
+        /* 70+ FONTS SELECTOR GRID STYLING */
+        .font-selector-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .font-option-chip {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            text-align: center;
+            cursor: pointer;
+            color: #fff;
+            transition: all 0.2s;
+        }
+
+        .font-option-chip:hover {
+            border-color: #00e6a8;
+            background: rgba(0, 230, 168, 0.1);
         }
 
         /* ==========================================
@@ -255,7 +483,7 @@
         }
 
         .main-subtitle {
-            color: #ff7b00;
+            color: var(--accent-orange);
             font-size: 12px;
             letter-spacing: 2px;
             margin-top: 5px;
@@ -438,7 +666,6 @@
         .btn-apk { background: linear-gradient(90deg, #00e6a8, #27c93f); color: #000; }
         .btn-bot { background: linear-gradient(90deg, #11998e, #38ef7d); color: #000; }
 
-        /* RGB ANIMATION FOR TEXT */
         .rgb-text {
             font-weight: bold;
             font-style: italic;
@@ -552,9 +779,7 @@
         .stat-card { background: rgba(0,0,0,0.1); padding: 10px; border-radius: 8px; text-align: center; border: 1px solid var(--card-border); }
         .stat-card h3 { font-size: 14px; color: var(--text-color); word-break: break-all; }
         .stat-card p { font-size: 10px; color: var(--subtext-color); }
-        .repo-item { background: rgba(0,0,0,0.1); padding: 8px 12px; border-radius: 6px; margin-top: 6px; font-size: 12px; word-break: break-all; border: 1px solid var(--card-border); }
 
-        /* FIXED TIKTOK RESULT INTERFACE */
         .tiktok-preview-card {
             display: flex;
             flex-direction: column;
@@ -567,6 +792,36 @@
             max-height: 250px;
             border-radius: 10px;
             background: #000;
+        }
+
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .faq-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .faq-question {
+            padding: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-orange);
+        }
+        .faq-answer {
+            padding: 0 12px 12px 12px;
+            font-size: 11px;
+            color: var(--subtext-color);
+            display: none;
+            line-height: 1.5;
         }
 
         #custom-toast {
@@ -593,7 +848,23 @@
         </div>
         <div class="intro-title">HASSAN TOOLKIT</div>
         <div class="intro-sub">PRO TOOLS FOR DEVELOPERS</div>
-        <div id="intro-fire-text" class="intro-fire-message"></div>
+        
+        <div class="cyan-glow-message">PLEASE FOLLOW OUR CHANNELS TO ACCESS TOOLKIT:</div>
+        <div class="intro-channels-box">
+            <a href="https://t.me/hassan1updates" target="_blank" class="intro-channel-btn btn-tg-1">
+                <span><i class="fa-brands fa-telegram"></i> TOOLKIT UPDATES</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://t.me/+NmimAJ2jgoFhYjQ8" target="_blank" class="intro-channel-btn btn-tg-2">
+                <span><i class="fa-brands fa-telegram"></i> HASSAN OFC CHANNEL</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="intro-channel-btn btn-wa-3">
+                <span><i class="fa-brands fa-whatsapp"></i> HASSAN EDITING TUTORIAL CHANNEL</span>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+        </div>
+        <button class="btn-close-intro" onclick="closeIntroScreen()">CONTINUE TO TOOLKIT <i class="fa-solid fa-arrow-right"></i></button>
     </div>
 
     <!-- Main Container -->
@@ -604,9 +875,15 @@
                 <div class="header-title">HASSAN TOOLKIT</div>
             </div>
             <div class="header-icons">
-                <i class="fa-solid fa-star" onclick="toggleFavorites()" title="Favorites" style="color: #ffd700;"></i>
-                <i id="theme-toggle" class="fa-regular fa-moon" onclick="toggleTheme()" title="Toggle Theme"></i>
+                <div class="saved-btn-wrapper" onclick="toggleFavorites()" title="Favorites">
+                    <i class="fa-solid fa-star"></i>
+                    <span>Saved</span>
+                    <div id="saved-badge" class="saved-dot-badge"></div>
+                </div>
+                <!-- DAY/NIGHT TOGGLE WORKING BUTTON -->
+                <i id="theme-toggle" class="fa-solid fa-moon" onclick="toggleTheme()" title="Toggle Day/Night Mode"></i>
                 <i class="fa-regular fa-bell" onclick="toggleNotifications()" title="Notifications"></i>
+                <i class="fa-solid fa-ellipsis-vertical" onclick="toggle3DotsModal()" title="More Options" style="padding-left: 5px;"></i>
             </div>
         </header>
 
@@ -1152,7 +1429,7 @@
                 </div>
             </div>
 
-            <!-- RESOURCE TOOL 8 (PEHLE KA LAST TOOL) -->
+            <!-- RESOURCE TOOL 8 -->
             <div class="tool-card" data-id="new-tool-8">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1170,7 +1447,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL ADDED AT THE VERY END AS REQUESTED -->
+            <!-- NEW TOOL ADDED AT THE VERY END -->
             <div class="tool-card" data-id="hassan-ttvd-web">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1237,8 +1514,143 @@
     </div>
 
     <!-- ==========================================
-       MODALS FOR DIFFERENT TOOLS
+       MODALS FOR TOOLS & CLEAN 3-DOTS POPUP MENU
        ========================================== -->
+
+    <!-- Clean Modal Popup for 3-Dots Menu -->
+    <div id="dots-modal" class="dots-modal-overlay">
+        <div class="dots-modal-content">
+            <div class="dots-modal-header">
+                <span><i class="fa-solid fa-bars"></i> HASSAN MENU & SETTINGS</span>
+                <span class="dots-modal-close" onclick="toggle3DotsModal()">&times;</span>
+            </div>
+            
+            <div class="dots-menu-item" onclick="openModal('faq-modal'); toggle3DotsModal();">
+                <i class="fa-solid fa-circle-question" style="color:#ff7b00;"></i> FAQ & Help
+            </div>
+            <div class="dots-menu-item" onclick="openModal('about-modal'); toggle3DotsModal();">
+                <i class="fa-solid fa-circle-info" style="color:#00e6a8;"></i> About Hassan Toolkit
+            </div>
+            <a href="https://t.me/hassan1updates" target="_blank" class="dots-menu-item">
+                <i class="fa-brands fa-telegram" style="color:#229ED9;"></i> TOOLKIT UPDATES
+            </a>
+            <a href="https://t.me/+NmimAJ2jgoFhYjQ8" target="_blank" class="dots-menu-item">
+                <i class="fa-brands fa-telegram" style="color:#8a2be2;"></i> HASSAN OFC CHANNEL
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="dots-menu-item">
+                <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> HASSAN EDITING TUTORIAL
+            </a>
+
+            <!-- 70+ TOOLKIT FONTS SELECTOR INSIDE MENU -->
+            <div class="menu-heading"><i class="fa-solid fa-font"></i> Select Toolkit Font Style (70+):</div>
+            <div class="font-selector-grid">
+                <div class="font-option-chip" onclick="applyToolkitFont('default')">Default</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('bold')">Bold Pro</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('italic')">Italic Style</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('bold-italic')">Bold Italic</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('falcon')">Falcon Font</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('monospace')">Monospace</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('cursive')">Cursive Fancy</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('gothic')">Gothic Heavy</div>
+                <div class="font-option-chip" onclick="applyToolkitFont('serif')">Classic Serif</div>
+            </div>
+
+            <!-- COLOR SELECTOR THEME GRID -->
+            <div class="menu-heading"><i class="fa-solid fa-palette"></i> Select Theme Color:</div>
+            <div class="color-grid-menu">
+                <div class="color-chip" style="background:#00f3ff; color:#000;" onclick="applyCustomTheme('cyan-glow')">Cyan Glow</div>
+                <div class="color-chip" style="background:#ffd700; color:#000;" onclick="applyCustomTheme('golden')">Golden</div>
+                <div class="color-chip" style="background:#000000; border-color:#555;" onclick="applyCustomTheme('black')">Black</div>
+                <div class="color-chip" style="background:#ffffff; color:#000;" onclick="applyCustomTheme('white')">White</div>
+                <div class="color-chip" style="background:#9c27b0;" onclick="applyCustomTheme('purple')">Purple</div>
+                <div class="color-chip" style="background:#e91e63;" onclick="applyCustomTheme('pink')">Pink</div>
+                <div class="color-chip" style="background:#f44336;" onclick="applyCustomTheme('red')">Red</div>
+                <div class="color-chip" style="background:#ff9800; color:#000;" onclick="applyCustomTheme('orange')">Orange</div>
+                <div class="color-chip" style="background:#ffeb3b; color:#000;" onclick="applyCustomTheme('yellow')">Yellow</div>
+                <div class="color-chip" style="background:#795548;" onclick="applyCustomTheme('brown')">Brown</div>
+                <div class="color-chip" style="background:#2196f3;" onclick="applyCustomTheme('blue')">Blue</div>
+                <div class="color-chip" style="background:#00a2ff; color:#000;" onclick="applyCustomTheme('g-blue')">Glow Blue</div>
+                <div class="color-chip" style="background:#4caf50;" onclick="applyCustomTheme('green')">Green</div>
+                <div class="color-chip" style="background:#00ff44; color:#000;" onclick="applyCustomTheme('g-green')">Glow Green</div>
+                <div class="color-chip" style="background:#ff003c;" onclick="applyCustomTheme('crimson-glow')">Crimson</div>
+                <div class="color-chip" style="background:#bd00ff;" onclick="applyCustomTheme('neon-violet')">Neon Violet</div>
+                <div class="color-chip" style="background:#ff00d4;" onclick="applyCustomTheme('magenta-glow')">Magenta</div>
+                <div class="color-chip" style="background:#00ffd5; color:#000;" onclick="applyCustomTheme('cyber-teal')">Cyber Teal</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="modal">
+        <div class="terminal-window">
+            <div class="terminal-topbar">
+                <div class="terminal-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+                <div class="terminal-path">~/hassan-toolkit/faq-help</div>
+                <div class="terminal-close" onclick="closeModal('faq-modal')">&times;</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-logo-area">
+                    <div class="terminal-brand"><i class="fa-solid fa-circle-question" style="color:var(--accent-orange);"></i> FREQUENTLY ASKED QUESTIONS</div>
+                    <div class="terminal-subtitle">// HELP & SUPPORT CENTER</div>
+                </div>
+                <div class="faq-accordion">
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is Hassan Toolkit?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">Hassan Toolkit is a all-in-one developer and creator toolkit providing premium utilities, video downloaders, AI master prompts, editing assets, and custom WhatsApp bots.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>Are all tools free to use?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">Yes, 100% free! All resources, downloaders, and prompts are curated and maintained by Hassan FF for the community without any paywall.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>How to download TikTok videos without watermark?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">Simply copy any TikTok video link, launch our internal "TikTok DL" tool or use our official Web Tool "HASSAN TIKTOK VIDEO DOWNLOADER", paste the URL, and click download.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I report broken links or request new tools?</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">You can directly connect with us via WhatsApp Support (+923372938160) or reach out in our official Telegram Channel: @hassan1updates.</div>
+                    </div>
+                </div>
+                <div class="terminal-footer">powered by <span>hassan toolkit</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="about-modal" class="modal">
+        <div class="terminal-window">
+            <div class="terminal-topbar">
+                <div class="terminal-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+                <div class="terminal-path">~/hassan-toolkit/about-us</div>
+                <div class="terminal-close" onclick="closeModal('about-modal')">&times;</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-logo-area">
+                    <div class="terminal-brand"><i class="fa-solid fa-circle-info" style="color:#00e6a8;"></i> ABOUT HASSAN TOOLKIT</div>
+                    <div class="terminal-subtitle">// OFFICIAL DEVELOPER BRIEF</div>
+                </div>
+                <div style="font-size: 11px; line-height: 1.8; color: #ccc; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; border: 1px solid var(--card-border); text-align: justify;">
+                    <p style="margin-bottom: 12px;">Welcome to <strong style="color:var(--accent-orange);">HASSAN TOOLKIT</strong> — the ultimate digital suite specifically engineered for developers, video editors, content creators, and digital enthusiasts.</p>
+                    <p style="margin-bottom: 12px;">Founded and meticulously coded by <strong class="rgb-text">HASSAN FF</strong>, this toolkit brings together cutting-edge web utilities, GitHub profile analyzers, high-speed media downloaders, VIP modded applications, and high-value editing bundles directly to your fingertips.</p>
+                    <p style="margin-bottom: 12px;">Our primary mission is to eliminate barriers by serving premium-grade resources without annoying ads or paywalls. Whether you are seeking 3D AI generation master prompts, game design cohort courses, or full WhatsApp automation bots like Jawad MD & Kamran MD, Hassan Toolkit stands as your reliable companion.</p>
+                    <p>We continuously optimize our scripts, API integrations, and asset databases to guarantee high uptime, sleek dark/light user interfaces, and lightning-fast link resolution across all mobile and desktop browsers.</p>
+                </div>
+                <div class="terminal-footer">powered by <span>hassan toolkit</span></div>
+            </div>
+        </div>
+    </div>
 
     <!-- GitHub Info Modal -->
     <div id="git-modal" class="modal">
@@ -1289,7 +1701,7 @@
         </div>
     </div>
 
-    <!-- TikTok DL Modal (UI FIXED & ENHANCED) -->
+    <!-- TikTok DL Modal -->
     <div id="tt-modal" class="modal">
         <div class="terminal-window">
             <div class="terminal-topbar">
@@ -1317,15 +1729,71 @@
        JAVASCRIPT LOGIC & API CONTROLLERS
        ========================================== -->
     <script>
-        const introMessage = "HELLO ASALAMUALAIKUM.\n\nI AM HASSAN.\n\nTHE DEVELOPER OF THIS TOOLKIT.\n\nNEW UPDATED THING: ADDED NEW TIKTOK VIDEO DOWNLOADER LINK 🔥. \n\nNEW UPDATES COMING SOON...";
+        let hasUnreadSaved = false;
 
         window.addEventListener('load', () => {
-            startTypewriterSequence();
             loadNotifications();
             loadFavoritesState();
             checkLinkStatuses();
             setupSearchFilter();
+            updateSavedBadgeState();
+            populateDynamicFontChoices();
         });
+
+        function closeIntroScreen() {
+            const intro = document.getElementById('intro-screen');
+            if(intro) { 
+                intro.style.opacity = '0'; 
+                intro.style.visibility = 'hidden';
+                intro.style.display = 'none'; // Fixed to ensure it completely removes and allows full interaction
+            }
+        }
+
+        function toggle3DotsModal() {
+            const modal = document.getElementById('dots-modal');
+            if(!modal) return;
+            modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+        }
+
+        function applyCustomTheme(themeName) {
+            document.body.removeAttribute('data-theme');
+            if(themeName) {
+                document.body.setAttribute('data-theme', themeName);
+                showToast(`Theme changed to ${themeName.toUpperCase()}`);
+            }
+            toggle3DotsModal();
+        }
+
+        /* 70+ TOOLKIT FONT CHANGER FUNCTION */
+        function applyToolkitFont(fontKey) {
+            document.body.setAttribute('data-toolkit-font', fontKey);
+            showToast(`Toolkit Font updated to ${fontKey.toUpperCase()}`);
+            toggle3DotsModal();
+        }
+
+        function populateDynamicFontChoices() {
+            const grid = document.querySelector('.font-selector-grid');
+            if(!grid) return;
+            let fontTypes = ['bold', 'italic', 'bold-italic', 'falcon', 'monospace', 'cursive', 'gothic', 'serif'];
+            let html = grid.innerHTML;
+            for(let i = 1; i <= 62; i++) {
+                let chosenType = fontTypes[i % fontTypes.length];
+                html += `<div class="font-option-chip" onclick="applyToolkitFont('${chosenType}')">Style #${i + 9} ${chosenType}</div>`;
+            }
+            grid.innerHTML = html;
+        }
+
+        function toggleFaq(questionElem) {
+            const answer = questionElem.nextElementSibling;
+            const icon = questionElem.querySelector('i');
+            if(answer.style.display === 'block') {
+                answer.style.display = 'none';
+                icon.className = 'fa-solid fa-chevron-down';
+            } else {
+                answer.style.display = 'block';
+                icon.className = 'fa-solid fa-chevron-up';
+            }
+        }
 
         function showToast(message) {
             const toast = document.getElementById('custom-toast');
@@ -1333,6 +1801,23 @@
             toast.querySelector('#toast-message').innerText = message;
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        /* DAY / NIGHT MODE TOGGLE FIXED */
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const themeIcon = document.getElementById('theme-toggle');
+            if(themeIcon) {
+                if(document.body.classList.contains('light-mode')) {
+                    themeIcon.classList.remove('fa-moon');
+                    themeIcon.classList.add('fa-sun');
+                    showToast('Light Mode Activated ☀️');
+                } else {
+                    themeIcon.classList.remove('fa-sun');
+                    themeIcon.classList.add('fa-moon');
+                    showToast('Dark Mode Activated 🌙');
+                }
+            }
         }
 
         function setupSearchFilter() {
@@ -1348,32 +1833,6 @@
             });
         }
 
-        function startTypewriterSequence() {
-            const fireTextContainer = document.getElementById('intro-fire-text');
-            if(!fireTextContainer) return;
-            let charIndex = 0;
-            function typeChar() {
-                if (charIndex < introMessage.length) {
-                    fireTextContainer.innerHTML = introMessage.substring(0, charIndex + 1).replace(/\n/g, '<br>');
-                    charIndex++;
-                    setTimeout(typeChar, 35);
-                } else {
-                    setTimeout(eraseText, 4000);
-                }
-            }
-            function eraseText() {
-                if (charIndex > 0) {
-                    charIndex--;
-                    fireTextContainer.innerHTML = introMessage.substring(0, charIndex).replace(/\n/g, '<br>');
-                    setTimeout(eraseText, 20);
-                } else {
-                    const intro = document.getElementById('intro-screen');
-                    if(intro) { intro.style.opacity = '0'; intro.style.visibility = 'hidden'; }
-                }
-            }
-            setTimeout(typeChar, 400);
-        }
-
         async function checkLinkStatuses() {
             document.querySelectorAll('.link-status').forEach(async (el) => {
                 const url = el.getAttribute('data-url');
@@ -1386,15 +1845,6 @@
             });
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const themeIcon = document.getElementById('theme-toggle');
-            if(themeIcon) {
-                themeIcon.classList.toggle('fa-moon');
-                themeIcon.classList.toggle('fa-sun');
-            }
-        }
-
         function toggleNotifications() {
             const dropdown = document.getElementById('notif-dropdown');
             const favDropdown = document.getElementById('fav-dropdown');
@@ -1402,11 +1852,25 @@
             if(dropdown) dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
 
+        function updateSavedBadgeState() {
+            const badge = document.getElementById('saved-badge');
+            if(!badge) return;
+            let favorites = JSON.parse(localStorage.getItem('hassan_favorites')) || [];
+            if(favorites.length > 0 && hasUnreadSaved) {
+                badge.classList.add('unread');
+            } else {
+                badge.classList.remove('unread');
+            }
+        }
+
         function toggleFavorites() {
             const dropdown = document.getElementById('fav-dropdown');
             const notifDropdown = document.getElementById('notif-dropdown');
             if(notifDropdown) notifDropdown.style.display = 'none';
             if(dropdown) dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+            
+            hasUnreadSaved = false;
+            updateSavedBadgeState();
             renderFavoritesList();
         }
 
@@ -1417,12 +1881,16 @@
                 favorites.splice(index, 1);
                 starElem.classList.remove('fa-solid', 'favorited');
                 starElem.classList.add('fa-regular');
+                showToast(`Removed from Saved`);
             } else {
                 favorites.push({ title, target, isExternal });
                 starElem.classList.remove('fa-regular');
                 starElem.classList.add('fa-solid', 'favorited');
+                hasUnreadSaved = true;
+                showToast(`Saved to Favorites!`);
             }
             localStorage.setItem('hassan_favorites', JSON.stringify(favorites));
+            updateSavedBadgeState();
         }
 
         function loadFavoritesState() {
@@ -1507,7 +1975,6 @@
             } catch(e) { loader.style.display = 'none'; alert('Error'); }
         }
 
-        // TIKTOK DOWNLOADER WITH FIXED UI & BETTER MEDIA DISPLAY
         async function fetchTikTokData() {
             const url = document.getElementById('tt-url').value.trim();
             const loader = document.getElementById('tt-loader');
