@@ -70,18 +70,8 @@
             position: relative;
         }
 
-        /* Dynamic Toolkit Fonts Overrides */
-        body[data-toolkit-font="bold"] * { font-weight: 800 !important; }
-        body[data-toolkit-font="italic"] * { font-style: italic !important; }
-        body[data-toolkit-font="bold-italic"] * { font-weight: 800 !important; font-style: italic !important; }
-        body[data-toolkit-font="monospace"] * { font-family: 'Courier New', Courier, monospace !important; }
-        body[data-toolkit-font="cursive"] * { font-family: 'Comic Sans MS', 'Brush Script MT', cursive !important; }
-        body[data-toolkit-font="gothic"] * { font-family: 'Impact', 'Arial Black', sans-serif !important; }
-        body[data-toolkit-font="falcon"] * { font-family: 'Trebuchet MS', 'Arial Bold', sans-serif !important; letter-spacing: 1.5px !important; text-transform: uppercase !important; }
-        body[data-toolkit-font="serif"] * { font-family: 'Georgia', 'Times New Roman', serif !important; }
-
         /* ==========================================
-           BACKGROUND AMBIENT GLOW EFFECT
+           BACKGROUND AMBIENT GLOW & CONTAINED BLUR SLIDESHOW
            ========================================== */
         .ambient-glow {
             position: fixed;
@@ -95,6 +85,72 @@
             border-radius: 50%;
             pointer-events: none;
             z-index: 0;
+        }
+
+        /* BACKGROUND BLUR SLIDESHOW CONTAINER (CONTAINED WITHIN SCREEN) */
+        .bg-blur-slideshow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .bg-slide-img {
+            position: absolute;
+            max-width: 90vw;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            opacity: 0;
+            filter: blur(0px) brightness(0.4);
+            transition: opacity 1.5s ease-in-out, filter 3s ease-in-out;
+        }
+
+        .bg-slide-img.active {
+            opacity: 0.25;
+            animation: clearToBlurCycle 6s ease-in-out infinite;
+        }
+
+        @keyframes clearToBlurCycle {
+            0% { filter: blur(0px) brightness(0.5) scale(1); }
+            50% { filter: blur(20px) brightness(0.3) scale(1.02); }
+            100% { filter: blur(0px) brightness(0.5) scale(1); }
+        }
+
+        /* LIVE STATS BADGE BAR (ONLY TOTAL TOOLS) */
+        .live-stats-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0 5px 0;
+        }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-pill i {
+            color: var(--accent-orange);
         }
 
         /* ==========================================
@@ -434,33 +490,6 @@
             transform: scale(1.05);
         }
 
-        /* 70+ FONTS SELECTOR GRID STYLING */
-        .font-selector-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            max-height: 200px;
-            overflow-y: auto;
-            padding-right: 5px;
-        }
-
-        .font-option-chip {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 8px;
-            border-radius: 8px;
-            font-size: 11px;
-            text-align: center;
-            cursor: pointer;
-            color: #fff;
-            transition: all 0.2s;
-        }
-
-        .font-option-chip:hover {
-            border-color: #00e6a8;
-            background: rgba(0, 230, 168, 0.1);
-        }
-
         /* ==========================================
            HERO SECTION & SEARCH BAR
            ========================================== */
@@ -511,7 +540,7 @@
         }
 
         /* ==========================================
-           TOOLS GRID & TOOL CARD ARCHITECTURE
+           TOOLS GRID & VIBRANT GRADIENT CARD ARCHITECTURE
            ========================================== */
         .tools-grid {
             display: grid;
@@ -522,14 +551,29 @@
 
         .tool-card {
             background: var(--card-bg);
-            border: 1px solid var(--card-border);
+            border: 2px solid transparent;
             border-radius: 18px;
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+
+        /* VIBRANT GRADIENT CARD BORDER THEMES */
+        .tool-card:nth-child(1n) { border-color: #ffd700; background: linear-gradient(145deg, rgba(255,215,0,0.08), rgba(255,255,255,0.02)); }
+        .tool-card:nth-child(2n) { border-color: #00f3ff; background: linear-gradient(145deg, rgba(0,243,255,0.08), rgba(255,255,255,0.02)); }
+        .tool-card:nth-child(3n) { border-color: #ff007f; background: linear-gradient(145deg, rgba(255,0,127,0.08), rgba(255,255,255,0.02)); }
+        .tool-card:nth-child(4n) { border-color: #00ff66; background: linear-gradient(145deg, rgba(0,255,102,0.08), rgba(255,255,255,0.02)); }
+        .tool-card:nth-child(5n) { border-color: #9d00ff; background: linear-gradient(145deg, rgba(157,0,255,0.08), rgba(255,255,255,0.02)); }
+        .tool-card:nth-child(6n) { border-color: #ff6600; background: linear-gradient(145deg, rgba(255,102,0,0.08), rgba(255,255,255,0.02)); }
 
         .tool-banner {
             position: relative;
@@ -839,6 +883,13 @@
     <!-- Ambient Glow Background -->
     <div class="ambient-glow"></div>
 
+    <!-- BACKGROUND BLUR TRANSITION SLIDESHOW CONTAINER (WITH CONTAINED 3 LOGOS) -->
+    <div class="bg-blur-slideshow-container" id="bg-slideshow">
+        <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" class="bg-slide-img active" alt="Background Logo 1">
+        <img src="https://i.postimg.cc/nLx4FJKr/1000005452.png" class="bg-slide-img" alt="Background Logo 2">
+        <img src="https://i.ibb.co/21qmyHBJ/jawadmd.jpg" class="bg-slide-img" alt="Background Logo 3">
+    </div>
+
     <!-- Intro Splash Screen -->
     <div id="intro-screen">
         <div class="logo-ring-container">
@@ -849,18 +900,23 @@
         <div class="intro-title">HASSAN TOOLKIT</div>
         <div class="intro-sub">PRO TOOLS FOR DEVELOPERS</div>
         
+        <!-- NEW THING ADDED MESSAGE TOGGLE BAR IN INTRO -->
+        <div id="intro-new-toggle" style="margin-top: 12px; background: rgba(0,230,168,0.1); border: 1px solid #00e6a8; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; color: #00e6a8; letter-spacing: 0.5px; animation: cyanPulse 1.5s infinite alternate;">
+            NEW THING ADDED: GOD X MOD PREMIUM & KEY GENERATOR
+        </div>
+
         <div class="cyan-glow-message">PLEASE FOLLOW OUR CHANNELS TO ACCESS TOOLKIT:</div>
         <div class="intro-channels-box">
             <a href="https://t.me/hassan1updates" target="_blank" class="intro-channel-btn btn-tg-1">
-                <span><i class="fa-brands fa-telegram"></i> TOOLKIT UPDATES</span>
+                <span><i class="fa-brands fa-telegram"></i> Telegram</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
-            <a href="https://t.me/+NmimAJ2jgoFhYjQ8" target="_blank" class="intro-channel-btn btn-tg-2">
-                <span><i class="fa-brands fa-telegram"></i> HASSAN OFC CHANNEL</span>
+            <a href="https://t.me/hassan1updates" target="_blank" class="intro-channel-btn btn-tg-2">
+                <span><i class="fa-brands fa-telegram"></i> Telegram</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
             <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="intro-channel-btn btn-wa-3">
-                <span><i class="fa-brands fa-whatsapp"></i> HASSAN EDITING TUTORIAL CHANNEL</span>
+                <span><i class="fa-brands fa-whatsapp"></i> WhatsApp</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
         </div>
@@ -914,6 +970,11 @@
             </div>
             <div class="main-title">HASSAN TOOLKIT</div>
             <div class="main-subtitle">PRO TOOLS FOR DEVELOPERS</div>
+            
+            <!-- TOTAL TOOLS COUNTER BAR -->
+            <div class="live-stats-bar">
+                <div class="stat-pill"><i class="fa-solid fa-toolbox"></i> Total Tools: <span id="total-tools-count">0</span></div>
+            </div>
         </div>
 
         <!-- Live Search Box -->
@@ -975,24 +1036,7 @@
                 </div>
             </div>
 
-            <!-- Tool 4: VALI MODS -->
-            <div class="tool-card" data-id="vali-tool">
-                <div class="tool-banner">
-                    <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'VALI MODS', 'https://www.mediafire.com/file/bqcykkj2t0s28no/ALL_SERVERS_32_BIT_V80.xapk/file', true)"></i>
-                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
-                </div>
-                <div class="tool-content">
-                    <div>
-                        <div class="tool-title">VALI MODS</div>
-                        <span class="badge-new badge-apk">APK</span>
-                        <div class="tool-desc" style="color: #666; font-size: 10px;">VALI MODS HOLOGRAM 32 BIT</div>
-                    </div>
-                    <a href="https://www.mediafire.com/file/bqcykkj2t0s28no/ALL_SERVERS_32_BIT_V80.xapk/file" target="_blank" class="btn-launch btn-vali"><i class="fa-solid fa-download"></i> Download</a>
-                </div>
-            </div>
-
-            <!-- Tool 5: 2D STICKMAN -->
+            <!-- Tool 4: 2D STICKMAN -->
             <div class="tool-card" data-id="stickman-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1009,7 +1053,7 @@
                 </div>
             </div>
 
-            <!-- Tool 6: TIKTOK VIDEO DOWNLOADER -->
+            <!-- Tool 5: TIKTOK VIDEO DOWNLOADER -->
             <div class="tool-card" data-id="apk-1">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1027,7 +1071,7 @@
                 </div>
             </div>
 
-            <!-- Tool 7: You cut Premium -->
+            <!-- Tool 6: You cut Premium -->
             <div class="tool-card" data-id="apk-2">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1045,7 +1089,7 @@
                 </div>
             </div>
 
-            <!-- Tool 8: TikTok MOD -->
+            <!-- Tool 7: TikTok MOD -->
             <div class="tool-card" data-id="apk-3">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1063,7 +1107,7 @@
                 </div>
             </div>
 
-            <!-- Tool 9: Image 2 Link -->
+            <!-- Tool 8: Image 2 Link -->
             <div class="tool-card" data-id="apk-4">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1081,7 +1125,7 @@
                 </div>
             </div>
 
-            <!-- Tool 10: Inshot MOD -->
+            <!-- Tool 9: Inshot MOD -->
             <div class="tool-card" data-id="apk-5">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1099,7 +1143,7 @@
                 </div>
             </div>
 
-            <!-- Tool 11: FREE FAKE NUMBERS -->
+            <!-- Tool 10: FREE FAKE NUMBERS -->
             <div class="tool-card" data-id="fake-num-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1117,7 +1161,7 @@
                 </div>
             </div>
 
-            <!-- Tool 12: PINTEREST VIDEO DOWNLOADER -->
+            <!-- Tool 11: PINTEREST VIDEO DOWNLOADER -->
             <div class="tool-card" data-id="pinterest-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1135,7 +1179,7 @@
                 </div>
             </div>
 
-            <!-- Tool 13: WA CHANNEL REACTS -->
+            <!-- Tool 12: WA CHANNEL REACTS -->
             <div class="tool-card" data-id="wa-reacts-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1153,7 +1197,7 @@
                 </div>
             </div>
 
-            <!-- Tool 14: PRO BOY FREE HOSTING -->
+            <!-- Tool 13: PRO BOY FREE HOSTING -->
             <div class="tool-card" data-id="pro-host-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1171,7 +1215,7 @@
                 </div>
             </div>
 
-            <!-- Tool 15: HASSAN VIRAL TOOLKIT -->
+            <!-- Tool 14: HASSAN VIRAL TOOLKIT -->
             <div class="tool-card" data-id="viral-toolkit-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1189,7 +1233,7 @@
                 </div>
             </div>
 
-            <!-- Tool 16: CAPCUT PRO -->
+            <!-- Tool 15: CAPCUT PRO -->
             <div class="tool-card" data-id="capcut-pro-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1207,99 +1251,165 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL 1: VIP COOL WIRE V39 MAIN ID -->
-            <div class="tool-card" data-id="vip-cool-wire">
+            <!-- NEW TOOL: Alyan Automation Batch 1 -->
+            <div class="tool-card" data-id="alyan-auto">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'VIP COOL WIRE V39 MAIN ID', 'https://www.mediafire.com/file/vmeb5cetd02zn6l/%25F0%259D%2590%2595%25F0%259D%2590%2588%25F0%259D%2590%2590+%25F0%259D%2590%2582%25F0%259D%2590%2592%25F0%259D%2590%2592%25F0%259D%2590%258B+%25F0%259D%2590%2596%25F0%259D%2590%2588%25F0%259D%2590%2591%25F0%259D%2590%2584+%25F0%259F%259A%25AC.7z/file', true)"></i>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'Alyan Automation Batch 1', 'https://drive.google.com/drive/folders/1YE5zoXx6msybhBdeClY78hKZGXl0x7jz', true)"></i>
                     <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
                 </div>
                 <div class="tool-content">
                     <div>
-                        <div class="tool-title">VIP COOL WIRE V39 MAIN ID</div>
-                        <span class="badge-new badge-vip">VIP TOOL</span>
-                        <div class="tool-desc">
-                            🛡️ NO KEY SYSTEM ✅<br>
-                            🛡️ NO NEED SHIZUKU ✅<br>
-                            🎯 AIM MAGNATE+ SILENT, ESP LOCATION, AIM LAG + TELEPORT, FREEZE+ GHOST
-                        </div>
-                        <div class="link-status" data-url="https://www.mediafire.com/file/vmeb5cetd02zn6l/%25F0%259D%2590%2595%25F0%259D%2590%2588%25F0%259D%2590%2590+%25F0%259D%2590%2582%25F0%259D%2590%2592%25F0%259D%2590%2592%25F0%259D%2590%258B+%25F0%259D%2590%2596%25F0%259D%2590%2588%25F0%259D%2590%2591%25F0%259D%2590%2584+%25F0%259F%259A%25AC.7z/file"><span style="color:var(--subtext-color);">Checking link...</span></div>
-                    </div>
-                    <a href="https://www.mediafire.com/file/vmeb5cetd02zn6l/%25F0%259D%2590%2595%25F0%259D%2590%2588%25F0%259D%2590%2590+%25F0%259D%2590%2582%25F0%259D%2590%2592%25F0%259D%2590%2592%25F0%259D%2590%258B+%25F0%259D%2590%2596%25F0%259D%2590%2588%25F0%259D%2590%2591%25F0%259D%2590%2584+%25F0%259F%259A%25AC.7z/file" target="_blank" class="btn-launch btn-vali"><i class="fa-solid fa-download"></i> Download File</a>
-                </div>
-            </div>
-
-            <!-- NEW TOOL 2: GAME DEVELOPMENT COHORT VARUN MAYYA AEVY TV -->
-            <div class="tool-card" data-id="game-dev-cohort">
-                <div class="tool-banner">
-                    <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'GAME DEVELOPMENT COHORT VARUN MAYYA AEVY TV', 'https://drive.google.com/drive/folders/1yqRZ6qBJOSSFnV6slZmoL2A872aEc4uk?usp=drive_link', true)"></i>
-                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
-                </div>
-                <div class="tool-content">
-                    <div>
-                        <div class="tool-title">GAME DEV COHORT VARUN MAYYA</div>
+                        <div class="tool-title">Alyan Automation Batch 1</div>
                         <span class="badge-new badge-course">COURSE</span>
-                        <div class="tool-desc">
-                            📖 Learn game design from scratch & turn creative ideas into engaging gaming experiences. Level, character & environment design.
-                        </div>
-                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1yqRZ6qBJOSSFnV6slZmoL2A872aEc4uk?usp=drive_link"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                        <div class="tool-desc">Alyan Automation Batch 1 drive folder learning materials.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1YE5zoXx6msybhBdeClY78hKZGXl0x7jz"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
-                    <a href="https://drive.google.com/drive/folders/1yqRZ6qBJOSSFnV6slZmoL2A872aEc4uk?usp=drive_link" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                    <a href="https://drive.google.com/drive/folders/1YE5zoXx6msybhBdeClY78hKZGXl0x7jz" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
                 </div>
             </div>
 
-            <!-- NEW TOOL 3: CAPY PAPY MASTER PROMPT -->
-            <div class="tool-card" data-id="capy-papy-prompt">
+            <!-- NEW TOOL: YouTube Masterclass -->
+            <div class="tool-card" data-id="yt-masterclass">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'CAPY PAPY MASTER PROMPT', 'https://docs.google.com/document/d/19G9M0SwSPTRGAbgMSMFZjDIx28rsSNi1e3nGduoTRTY/edit?usp=drive_link', true)"></i>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'YouTube Masterclass', 'https://drive.google.com/drive/folders/1S8-o15EYNW_JFMUzIqrQCTaTvRmhsC-1', true)"></i>
                     <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
                 </div>
                 <div class="tool-content">
                     <div>
-                        <div class="tool-title">CAPY PAPY MASTER PROMPT</div>
-                        <span class="badge-new badge-stickman">AI PROMPT</span>
-                        <div class="tool-desc">HERE A CAPY PAPY MASTER PROMPT FOR YOUR AI VIDEOS</div>
-                        <div class="link-status" data-url="https://docs.google.com/document/d/19G9M0SwSPTRGAbgMSMFZjDIx28rsSNi1e3nGduoTRTY/edit?usp=drive_link"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                        <div class="tool-title">YouTube Masterclass</div>
+                        <span class="badge-new badge-yt">MASTERCLASS</span>
+                        <div class="tool-desc">Master YouTube growth, editing, and content strategy.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1S8-o15EYNW_JFMUzIqrQCTaTvRmhsC-1"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
-                    <a href="https://docs.google.com/document/d/19G9M0SwSPTRGAbgMSMFZjDIx28rsSNi1e3nGduoTRTY/edit?usp=drive_link" target="_blank" class="btn-launch btn-stickman"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Doc</a>
+                    <a href="https://drive.google.com/drive/folders/1S8-o15EYNW_JFMUzIqrQCTaTvRmhsC-1" target="_blank" class="btn-launch btn-yt"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
                 </div>
             </div>
 
-            <!-- NEW TOOL 4: KAMRAN MD BOT -->
-            <div class="tool-card" data-id="kamran-md-bot">
+            <!-- NEW TOOL: YouTube Empire Builder -->
+            <div class="tool-card" data-id="yt-empire">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'KAMRAN MD BOT', 'https://kamran-md.site', true)"></i>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'YouTube Empire Builder', 'https://drive.google.com/drive/folders/1sQNtzO5ALtkFqgZZ0M4wejmE-zHX3qN0', true)"></i>
                     <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
                 </div>
                 <div class="tool-content">
                     <div>
-                        <div class="tool-title">KAMRAN MD BOT</div>
-                        <span class="badge-new badge-bot">WA BOT</span>
-                        <div class="tool-desc">THE MD BOT FOR YOUR WHATSAPP BY HASSAN FF</div>
-                        <div class="link-status" data-url="https://kamran-md.site"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                        <div class="tool-title">YouTube Empire Builder</div>
+                        <span class="badge-new badge-yt">EMPIRE</span>
+                        <div class="tool-desc">Build and scale your YouTube empire successfully.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1sQNtzO5ALtkFqgZZ0M4wejmE-zHX3qN0"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
-                    <a href="https://kamran-md.site" target="_blank" class="btn-launch btn-bot"><i class="fa-solid fa-robot"></i> Visit Site</a>
+                    <a href="https://drive.google.com/drive/folders/1sQNtzO5ALtkFqgZZ0M4wejmE-zHX3qN0" target="_blank" class="btn-launch btn-yt"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
                 </div>
             </div>
 
-            <!-- NEW TOOL 5: JAWAD MD BOT -->
-            <div class="tool-card" data-id="jawad-md-bot">
+            <!-- NEW TOOL: Cybersecurity Complete Course -->
+            <div class="tool-card" data-id="cyber-sec">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
-                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'JAWAD MD BOT', 'https://jawad-mdx.vercel.app', true)"></i>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'Cybersecurity Complete Course', 'https://drive.google.com/drive/folders/1RPN2wBIajy7HuSU_FOgL5vA4dIrkgZnA', true)"></i>
                     <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
                 </div>
                 <div class="tool-content">
                     <div>
-                        <div class="tool-title">JAWAD MD BOT</div>
-                        <span class="badge-new badge-bot">POWERFUL BOT</span>
-                        <div class="tool-desc">THE JAWAD MD BOT IS MOST POWERFUL MD BOT FOR WHATSAPP BY HASSAN FF</div>
-                        <div class="link-status" data-url="https://jawad-mdx.vercel.app"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                        <div class="tool-title" style="font-size: 12px;">Cybersecurity Complete Course</div>
+                        <span class="badge-new badge-vip">SECURITY</span>
+                        <div class="tool-desc">Complete cybersecurity learning course drive package.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1RPN2wBIajy7HuSU_FOgL5vA4dIrkgZnA"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
-                    <a href="https://jawad-mdx.vercel.app" target="_blank" class="btn-launch btn-bot"><i class="fa-solid fa-bolt"></i> Visit Site</a>
+                    <a href="https://drive.google.com/drive/folders/1RPN2wBIajy7HuSU_FOgL5vA4dIrkgZnA" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL: 1-40+ Courses -->
+            <div class="tool-card" data-id="courses-40">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, '1-40+ Courses', 'https://drive.google.com/drive/folders/1PWwB7ax0SO-Y_H4j2plt6juOtcEgc9EY', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">1-40+ Courses</div>
+                        <span class="badge-new badge-course">BUNDLE</span>
+                        <div class="tool-desc">Over 40+ professional courses collection.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1PWwB7ax0SO-Y_H4j2plt6juOtcEgc9EY"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1PWwB7ax0SO-Y_H4j2plt6juOtcEgc9EY" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL: 5TB Data -->
+            <div class="tool-card" data-id="data-5tb">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, '5TB Data', 'https://drive.google.com/drive/folders/1tnZ2v3HhrMzaD0mQ8SNDJ7X8O1mOA-j2', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">5TB Data</div>
+                        <span class="badge-new badge-apk">DATA</span>
+                        <div class="tool-desc">Massive 5TB valuable digital data and assets.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1tnZ2v3HhrMzaD0mQ8SNDJ7X8O1mOA-j2"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1tnZ2v3HhrMzaD0mQ8SNDJ7X8O1mOA-j2" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL: 15 Million Digital Products -->
+            <div class="tool-card" data-id="products-15m">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, '15 Million Digital Products', 'https://drive.google.com/drive/folders/1YWdpEKFGyIclbXIhJ0pCiCkEAbZqt-T4', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title" style="font-size: 11px;">15 Million Digital Products</div>
+                        <span class="badge-new badge-stickman">PRODUCTS</span>
+                        <div class="tool-desc">Huge bundle of 15 million digital assets.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1YWdpEKFGyIclbXIhJ0pCiCkEAbZqt-T4"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1YWdpEKFGyIclbXIhJ0pCiCkEAbZqt-T4" target="_blank" class="btn-launch btn-stickman"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL: 200TB Data -->
+            <div class="tool-card" data-id="data-200tb">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, '200TB Data', 'https://drive.google.com/drive/folders/1vxqMqhBwDvYzx6C3vRbLCJKaJqqasT8P', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">200TB Data</div>
+                        <span class="badge-new badge-vip">MEGA DATA</span>
+                        <div class="tool-desc">Ultimate 200TB ultra data collection drive folder.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1vxqMqhBwDvYzx6C3vRbLCJKaJqqasT8P"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1vxqMqhBwDvYzx6C3vRbLCJKaJqqasT8P" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
+                </div>
+            </div>
+
+            <!-- NEW TOOL: 1000 Ai Stories Reels Bundle -->
+            <div class="tool-card" data-id="ai-stories-reels">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, '1000 Ai Stories Reels Bundle', 'https://drive.google.com/drive/folders/1mD1wqiYlauGplszIbl19uSI7G8MC4EXX', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title" style="font-size: 11px;">1000 Ai Stories Reels Bundle</div>
+                        <span class="badge-new badge-stickman">AI BUNDLE</span>
+                        <div class="tool-desc">1000 AI generated stories reels bundle for viral growth.</div>
+                        <div class="link-status" data-url="https://drive.google.com/drive/folders/1mD1wqiYlauGplszIbl19uSI7G8MC4EXX"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://drive.google.com/drive/folders/1mD1wqiYlauGplszIbl19uSI7G8MC4EXX" target="_blank" class="btn-launch btn-stickman"><i class="fa-solid fa-arrow-up-right-from-square"></i> Open Drive</a>
                 </div>
             </div>
 
@@ -1447,6 +1557,27 @@
                 </div>
             </div>
 
+            <!-- COMBINED CARD: GOD X MOD PREMIUM, MEDIAFIRE DOWNLOAD & KEY GENERATOR -->
+            <div class="tool-card" data-id="god-x-mod-combined">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'GOD X MOD PREMIUM', '#', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">GOD X MOD PREMIUM</div>
+                        <span class="badge-new badge-vip">PREMIUM & DOWNLOAD</span>
+                        <div class="tool-desc">FIRST COPY KEY THEN OPEN GAME & DOWNLOAD APK</div>
+                        <div class="link-status" data-url="https://viku.urlking.in/pahadi"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 6px; margin-top: 5px;">
+                        <a href="https://www.mediafire.com/file/dq04mjdnf6jv0c3/TikTok_%2528MOD%2529_BY_HASSAN.apk/file" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-download"></i> DOWNLOAD APK</a>
+                        <a href="https://viku.urlking.in/pahadi" target="_blank" class="btn-launch btn-vali"><i class="fa-solid fa-key"></i> KEY GENERATOR</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- NEW TOOL ADDED AT THE VERY END -->
             <div class="tool-card" data-id="hassan-ttvd-web">
                 <div class="tool-banner">
@@ -1475,14 +1606,14 @@
                 <a href="https://t.me/hassan1updates" target="_blank" class="connect-card">
                     <div class="connect-left">
                         <div class="connect-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
-                        <div class="connect-info"><h4>Telegram</h4><p>JOIN CHANNEL</p></div>
+                        <div class="connect-info"><h4>Telegram</h4><p>JOIN TELEGRAM CHANNEL</p></div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--subtext-color);"></i>
                 </a>
                 <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="connect-card">
                     <div class="connect-left">
                         <div class="connect-icon icon-wa"><i class="fa-brands fa-whatsapp"></i></div>
-                        <div class="connect-info"><h4>WhatsApp</h4><p>JOIN CHANNEL</p></div>
+                        <div class="connect-info"><h4>WhatsApp</h4><p>JOIN WHATSAPP CHANNEL</p></div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--subtext-color);"></i>
                 </a>
@@ -1532,28 +1663,11 @@
                 <i class="fa-solid fa-circle-info" style="color:#00e6a8;"></i> About Hassan Toolkit
             </div>
             <a href="https://t.me/hassan1updates" target="_blank" class="dots-menu-item">
-                <i class="fa-brands fa-telegram" style="color:#229ED9;"></i> TOOLKIT UPDATES
-            </a>
-            <a href="https://t.me/+NmimAJ2jgoFhYjQ8" target="_blank" class="dots-menu-item">
-                <i class="fa-brands fa-telegram" style="color:#8a2be2;"></i> HASSAN OFC CHANNEL
+                <i class="fa-brands fa-telegram" style="color:#229ED9;"></i> TELEGRAM
             </a>
             <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="dots-menu-item">
-                <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> HASSAN EDITING TUTORIAL
+                <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp
             </a>
-
-            <!-- 70+ TOOLKIT FONTS SELECTOR INSIDE MENU -->
-            <div class="menu-heading"><i class="fa-solid fa-font"></i> Select Toolkit Font Style (70+):</div>
-            <div class="font-selector-grid">
-                <div class="font-option-chip" onclick="applyToolkitFont('default')">Default</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('bold')">Bold Pro</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('italic')">Italic Style</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('bold-italic')">Bold Italic</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('falcon')">Falcon Font</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('monospace')">Monospace</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('cursive')">Cursive Fancy</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('gothic')">Gothic Heavy</div>
-                <div class="font-option-chip" onclick="applyToolkitFont('serif')">Classic Serif</div>
-            </div>
 
             <!-- COLOR SELECTOR THEME GRID -->
             <div class="menu-heading"><i class="fa-solid fa-palette"></i> Select Theme Color:</div>
@@ -1737,15 +1851,37 @@
             checkLinkStatuses();
             setupSearchFilter();
             updateSavedBadgeState();
-            populateDynamicFontChoices();
+            updateTotalToolsCounter();
+            initBackgroundSlideshow();
         });
+
+        /* BACKGROUND BLUR SLIDESHOW ROTATOR */
+        function initBackgroundSlideshow() {
+            const slides = document.querySelectorAll('.bg-slide-img');
+            if(slides.length === 0) return;
+            let currentSlide = 0;
+            setInterval(() => {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 6000);
+        }
+
+        /* DYNAMIC TOTAL TOOLS COUNTER */
+        function updateTotalToolsCounter() {
+            const allCards = document.querySelectorAll('.tools-grid .tool-card');
+            const totalToolsElem = document.getElementById('total-tools-count');
+            if(totalToolsElem) {
+                totalToolsElem.innerText = allCards.length;
+            }
+        }
 
         function closeIntroScreen() {
             const intro = document.getElementById('intro-screen');
             if(intro) { 
                 intro.style.opacity = '0'; 
                 intro.style.visibility = 'hidden';
-                intro.style.display = 'none'; // Fixed to ensure it completely removes and allows full interaction
+                intro.style.display = 'none';
             }
         }
 
@@ -1762,25 +1898,6 @@
                 showToast(`Theme changed to ${themeName.toUpperCase()}`);
             }
             toggle3DotsModal();
-        }
-
-        /* 70+ TOOLKIT FONT CHANGER FUNCTION */
-        function applyToolkitFont(fontKey) {
-            document.body.setAttribute('data-toolkit-font', fontKey);
-            showToast(`Toolkit Font updated to ${fontKey.toUpperCase()}`);
-            toggle3DotsModal();
-        }
-
-        function populateDynamicFontChoices() {
-            const grid = document.querySelector('.font-selector-grid');
-            if(!grid) return;
-            let fontTypes = ['bold', 'italic', 'bold-italic', 'falcon', 'monospace', 'cursive', 'gothic', 'serif'];
-            let html = grid.innerHTML;
-            for(let i = 1; i <= 62; i++) {
-                let chosenType = fontTypes[i % fontTypes.length];
-                html += `<div class="font-option-chip" onclick="applyToolkitFont('${chosenType}')">Style #${i + 9} ${chosenType}</div>`;
-            }
-            grid.innerHTML = html;
         }
 
         function toggleFaq(questionElem) {
@@ -1924,7 +2041,7 @@
 
         function loadNotifications() {
             let updates = JSON.parse(localStorage.getItem('hassan_updates')) || [
-                { title: "🔥 5 NEW VIP TOOLS ADDED!", time: Date.now() - 50 },
+                { title: "🔥 10+ NEW BUNDLES & COURSES ADDED!", time: Date.now() - 50 },
                 { title: "⚡ HASSAN TOOLKIT Live Released", time: Date.now() - 7200000 }
             ];
             const currentTime = Date.now();
