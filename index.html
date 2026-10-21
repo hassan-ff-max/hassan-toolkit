@@ -252,48 +252,53 @@
             flex-shrink: 0;
         }
 
-        /* NEW ORANGE TITLE TOGGLE BAR FOR UPDATES */
+        /* NEW ORANGE TITLE TOGGLE BAR FOR UPDATES (MOBILE VIEW OPTIMIZED) */
         .orange-toggle-container {
             margin-top: 15px;
             width: 100%;
-            max-width: 360px;
+            max-width: 100%;
             background: rgba(255, 123, 0, 0.12);
             border: 2px solid #ff7b00;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(255, 123, 0, 0.3);
             text-align: left;
+            box-sizing: border-box;
         }
 
         .orange-toggle-header {
             background: linear-gradient(90deg, #ff7b00, #ff4500);
             color: #ffffff;
-            padding: 10px 14px;
+            padding: 10px 12px;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 11px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            word-break: break-word;
         }
 
         .orange-toggle-body {
-            padding: 12px 14px;
-            font-size: 11px;
+            padding: 10px 12px;
+            font-size: 10.5px;
             color: #ffeedd;
-            line-height: 1.5;
-            background: rgba(0,0,0,0.3);
+            line-height: 1.4;
+            background: rgba(0,0,0,0.4);
             display: block;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .orange-toggle-body ul {
-            padding-left: 15px;
+            padding-left: 14px;
             margin-top: 5px;
         }
 
         .orange-toggle-body li {
             margin-bottom: 4px;
+            font-size: 10px;
         }
 
         .cyan-glow-message {
@@ -951,7 +956,7 @@
         <div class="intro-title">HASSAN TOOLKIT</div>
         <div class="intro-sub">PRO TOOLS FOR DEVELOPERS</div>
         
-        <!-- NEW ORANGE TITLE TOGGLE BAR WITH UPDATES -->
+        <!-- NEW ORANGE TITLE TOGGLE BAR WITH UPDATES (MOBILE VIEW OPTIMIZED) -->
         <div class="orange-toggle-container">
             <div class="orange-toggle-header" onclick="toggleOrangeUpdates()">
                 <span><i class="fa-solid fa-bullhorn"></i> HASSAN UPDATES & NEWS</span>
@@ -960,10 +965,7 @@
             <div id="orange-toggle-content" class="orange-toggle-body">
                 <strong>New Toolkit Updates Added:</strong>
                 <ul>
-                    <li>🔥 Hassan Portfolio Website Added</li>
-                    <li>⚡ Hassan Asitha Tutorial Added</li>
-                    <li>💎 All Card Heights Optimized & Compacted</li>
-                    <li>✨ Live Typewriter / Eraser Effect Integrated</li>
+                    <li>🔥 PROXY (FF CHEAT) ADDED</li>
                 </ul>
             </div>
         </div>
@@ -1621,6 +1623,26 @@
                 </div>
             </div>
 
+            <!-- NEW CHEAT TOOL: PROXY (FF CHEAT) -->
+            <div class="tool-card" data-id="stirlax-fake-lag-v8">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'STIRLAX FAKE LAG V8', 'https://www.mediafire.com/file/gddm2q7jeng061x/STIRLAX+FAKE', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title" style="font-size: 11px;">PROXY (FF CHEAT)</div>
+                        <span class="badge-new badge-vip">PROXY UPDATED</span>
+                        <div class="tool-desc">THE PROXY UPDATED LINK HERE GUY'S</div>
+                        <div class="link-status" data-url="https://whatsapp.com/channel/0029VbDoeAuHVvTeg44HZQ2u/154"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                        <a href="https://whatsapp.com/channel/0029VbDoeAuHVvTeg44HZQ2u/154" target="_blank" class="btn-launch btn-apk" style="padding: 5px; font-size: 10px;"><i class="fa-solid fa-download"></i> DOWNLOAD APK</a>
+                    </div>
+                </div>
+            </div>
+
             <!-- NEW TOOL: HASSAN TIKTOK VIDEO DOWNLOADER -->
             <div class="tool-card" data-id="hassan-ttvd-web">
                 <div class="tool-banner">
@@ -2182,7 +2204,7 @@
 
         function loadNotifications() {
             let updates = JSON.parse(localStorage.getItem('hassan_updates')) || [
-                { title: "🔥 NEW: HASSAN PORTFOLIO WEBSITE ADDED!", time: Date.now() - 50 },
+                { title: "🔥 NEW: STIRLAX FAKE LAG V8 CHEAT ADDED!", time: Date.now() - 50 },
                 { title: "⚡ HASSAN TOOLKIT Live Released", time: Date.now() - 7200000 }
             ];
             const currentTime = Date.now();
