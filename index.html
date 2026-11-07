@@ -26,13 +26,48 @@
             --active-font-family: 'Poppins', sans-serif;
         }
 
-        .light-mode {
+        /* THEME 1: DAY / LIGHT MODE */
+        .theme-day {
             --bg-color: #f4f6f9 !important;
             --text-color: #111111 !important;
             --card-bg: rgba(0, 0, 0, 0.04) !important;
             --card-border: rgba(0, 0, 0, 0.12) !important;
             --subtext-color: #555555 !important;
             --search-bg: rgba(0, 0, 0, 0.06) !important;
+            --accent-orange: #d35400 !important;
+        }
+
+        /* THEME 2: GOLDEN THEME */
+        .theme-golden {
+            --bg-color: #1a1400 !important;
+            --text-color: #ffd700 !important;
+            --card-bg: rgba(255, 215, 0, 0.06) !important;
+            --card-border: rgba(255, 215, 0, 0.2) !important;
+            --subtext-color: #e5c158 !important;
+            --search-bg: rgba(255, 215, 0, 0.08) !important;
+            --accent-orange: #ffa500 !important;
+        }
+
+        /* THEME 3: GOLDEN + BLACK THEME */
+        .theme-golden-black {
+            --bg-color: #000000 !important;
+            --text-color: #ffcc00 !important;
+            --card-bg: rgba(255, 204, 0, 0.04) !important;
+            --card-border: rgba(255, 204, 0, 0.3) !important;
+            --subtext-color: #b39b28 !important;
+            --search-bg: rgba(255, 204, 0, 0.06) !important;
+            --accent-orange: #ffaa00 !important;
+        }
+
+        /* THEME 4: WHITE + BLACK THEME */
+        .theme-white-black {
+            --bg-color: #000000 !important;
+            --text-color: #ffffff !important;
+            --card-bg: rgba(255, 255, 255, 0.06) !important;
+            --card-border: rgba(255, 255, 255, 0.2) !important;
+            --subtext-color: #aaaaaa !important;
+            --search-bg: rgba(255, 255, 255, 0.08) !important;
+            --accent-orange: #ff7b00 !important;
         }
 
         /* ==========================================
@@ -52,6 +87,10 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /* LIVE STATS BADGE BAR */
@@ -141,7 +180,7 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes spin-reverse { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
 
-        .intro-title { margin-top: 20px; font-size: 22px; font-weight: bold; letter-spacing: 2px; flex-shrink: 0; }
+        .intro-title { margin-top: 20px; font-size: 22px; font-weight: bold; letter-spacing: 2px; flex-shrink: 0; color: #fff; }
         .intro-sub { color: #ff7b00; font-size: 12px; letter-spacing: 1.5px; margin-top: 5px; flex-shrink: 0; }
 
         /* FUTURISTIC MOBILE UPDATES TOGGLE */
@@ -400,7 +439,7 @@
             margin-top: 10px; 
             letter-spacing: 1.5px; 
             min-height: 40px; 
-            color: #ffffff;
+            color: var(--text-color);
             text-shadow: 0 0 10px rgba(255, 123, 0, 0.5);
         }
         
@@ -532,6 +571,83 @@
             position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; width: 50px; height: 50px;
             border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 999; text-decoration: none;
+        }
+
+        /* RIGHT CORNER FLOATING 3-LINES MENU BUTTON & DROPDOWN */
+        .corner-menu-container {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .corner-menu-btn {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #000;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.5);
+            border: 2px solid #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .corner-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .corner-menu-dropdown {
+            display: none;
+            position: absolute;
+            bottom: 60px;
+            right: 0;
+            width: 260px;
+            background: #0b0f19;
+            border: 2px solid #ffd700;
+            border-radius: 14px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+            padding: 12px;
+            backdrop-filter: blur(10px);
+            z-index: 10001;
+        }
+
+        .corner-menu-dropdown.active {
+            display: block;
+            animation: fadeInMenu 0.3s ease;
+        }
+
+        @keyframes fadeInMenu {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .corner-menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            color: #ffd700;
+            text-decoration: none;
+            font-size: 11.5px;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            transition: background 0.2s;
+            border-radius: 8px;
+            margin-bottom: 4px;
+        }
+
+        .corner-menu-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .corner-menu-item:hover {
+            background: rgba(255, 215, 0, 0.15);
         }
 
         /* MODALS & TERMINAL UI */
@@ -725,7 +841,7 @@
             </div>
             <div id="futuristic-toggle-content" class="futuristic-toggle-body">
                 🚀 <strong>NEW UPDATES:</strong><br>
-                ✨ <em>Hassan All Social Media's Downloader & Link Locker Added!</em>
+                ✨ <em>Code Extractor & All Social Media Appeal Generator Added!</em>
             </div>
         </div>
 
@@ -793,7 +909,8 @@
                     <span>Saved</span>
                     <div id="saved-badge" class="saved-dot-badge"></div>
                 </div>
-                <i id="theme-toggle" class="fa-solid fa-moon" onclick="toggleTheme()" title="Toggle Day/Night Mode"></i>
+                <!-- MULTI-STATE THEME TOGGLE (MOON / SUN) -->
+                <i id="theme-toggle" class="fa-solid fa-moon" onclick="toggleMultiTheme()" title="Toggle Theme Modes"></i>
                 <i class="fa-solid fa-ellipsis-vertical" onclick="toggle3DotsModal()" title="More Options" style="padding-left: 5px;"></i>
             </div>
         </header>
@@ -831,6 +948,42 @@
 
         <!-- All Tools Grid Container -->
         <div class="tools-grid">
+
+            <!-- 1ST NEW ITEM: CODE EXTRACTOR -->
+            <div class="tool-card" data-id="code-extractor">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'CODE EXTRACTOR', 'https://hassan-host-top.vercel.app/?site=hassan-code-extractor-v1', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">CODE EXTRACTOR</div>
+                        <span class="badge-new badge-vip">EXTRACTOR</span>
+                        <div class="tool-desc">Extract source codes from website links easily.</div>
+                        <div class="link-status" data-url="https://hassan-host-top.vercel.app/?site=hassan-code-extractor-v1"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://hassan-host-top.vercel.app/?site=hassan-code-extractor-v1" target="_blank" class="btn-launch btn-git"><i class="fa-solid fa-code"></i> Open Extractor</a>
+                </div>
+            </div>
+
+            <!-- 2ND NEW ITEM: ALL SOCIAL MEDIA APPEAL GENERATOR -->
+            <div class="tool-card" data-id="all-social-appeal-generator">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'ALL SOCIAL MEDIA APPEAL GENERATOR', 'https://hassan-allplatform-appeal-geberator.vercel.app', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">ALL SOCIAL MEDIA APPEAL GENERATOR</div>
+                        <span class="badge-new badge-tt">APPEAL</span>
+                        <div class="tool-desc">Generate official appeals for social media platforms.</div>
+                        <div class="link-status" data-url="https://hassan-allplatform-appeal-geberator.vercel.app"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://hassan-allplatform-appeal-geberator.vercel.app" target="_blank" class="btn-launch btn-tt"><i class="fa-solid fa-file-lines"></i> Open Generator</a>
+                </div>
+            </div>
 
             <!-- 1ST NEW ITEM: HASSAN ALL SOCIAL MEDIA'S DOWNLOADER -->
             <div class="tool-card" data-id="hassan-all-social-downloader">
@@ -1010,6 +1163,42 @@
                 </div>
             </div>
 
+            <!-- Tool: You cut Premium -->
+            <div class="tool-card" data-id="apk-2">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'You cut Premium', 'https://www.mediafire.com/file/m2pn78stkkraf0i/YouCut_%2528Premium%2529_BY_HASSAN.apk/file', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">You cut Premium</div>
+                        <span class="badge-new badge-apk">APK</span>
+                        <div class="tool-desc">You cut Premium By HASSAN FF FOR ALL</div>
+                        <div class="link-status" data-url="https://www.mediafire.com/file/m2pn78stkkraf0i/YouCut_%2528Premium%2529_BY_HASSAN.apk/file"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://www.mediafire.com/file/m2pn78stkkraf0i/YouCut_%2528Premium%2529_BY_HASSAN.apk/file" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+            </div>
+
+            <!-- Tool: TikTok MOD -->
+            <div class="tool-card" data-id="apk-3">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'TikTok MOD', 'https://www.mediafire.com/file/dq04mjdnf6jv0c3/TikTok_%2528MOD%2529_BY_HASSAN.apk/file', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">TikTok MOD</div>
+                        <span class="badge-new badge-apk">APK</span>
+                        <div class="tool-desc">TikTok MOD By HASSAN FF FOR ALL</div>
+                        <div class="link-status" data-url="https://www.mediafire.com/file/dq04mjdnf6jv0c3/TikTok_%2528MOD%2529_BY_HASSAN.apk/file"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://www.mediafire.com/file/dq04mjdnf6jv0c3/TikTok_%2528MOD%2529_BY_HASSAN.apk/file" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+            </div>
+
             <!-- Tool: Image 2 Link -->
             <div class="tool-card" data-id="apk-4">
                 <div class="tool-banner">
@@ -1025,6 +1214,24 @@
                         <div class="link-status" data-url="https://www.mediafire.com/file/4ekriu7nwibdsxd/HASSAN_IMAGE_2_LINK.apk/file"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
                     <a href="https://www.mediafire.com/file/4ekriu7nwibdsxd/HASSAN_IMAGE_2_LINK.apk/file" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-download"></i> Download</a>
+                </div>
+            </div>
+
+            <!-- Tool: Inshot MOD -->
+            <div class="tool-card" data-id="apk-5">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'Inshot MOD', 'https://www.mediafire.com/file/f8umuuyo379n0nq/InShot_%2528Patched%2529_BY_HASSAN.apk/file', true)"></i>
+                    <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="Logo">
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">Inshot MOD</div>
+                        <span class="badge-new badge-apk">APK</span>
+                        <div class="tool-desc">Inshot MOD By HASSAN FF FOR ALL</div>
+                        <div class="link-status" data-url="https://www.mediafire.com/file/f8umuuyo379n0nq/InShot_%2528Patched%2529_BY_HASSAN.apk/file"><span style="color:var(--subtext-color);">Checking link...</span></div>
+                    </div>
+                    <a href="https://www.mediafire.com/file/f8umuuyo379n0nq/InShot_%2528Patched%2529_BY_HASSAN.apk/file" target="_blank" class="btn-launch btn-apk"><i class="fa-solid fa-download"></i> Download</a>
                 </div>
             </div>
 
@@ -1056,7 +1263,7 @@
                 <div class="tool-content">
                     <div>
                         <div class="tool-title">PINTEREST VIDEO DOWNLOADER</div>
-                        <span class="badge-new badge-yt">DOWNLOADER</span>
+                        <span class="badge-new badge-yt">WEB</span>
                         <div class="tool-desc">DOWNLOAD ANY PINTEREST VIDEO BY THIS WEBSITE</div>
                         <div class="link-status" data-url="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://klickpin.com/en4&ved=2ahUKEwjDi4-Z_7eXAxX0RlcBHW9AEkMQFnoECA8QAQ&sqi=2&usg=AOvVaw1oPokL0eIK_KzF7T4IwWBl"><span style="color:var(--subtext-color);">Checking link...</span></div>
                     </div>
@@ -1572,7 +1779,7 @@
                 <a href="https://t.me/hassanff01" target="_blank" class="connect-card">
                     <div class="connect-left">
                         <div class="connect-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
-                        <div class="connect-info"><h4>HASSAN OFF 2</h4><p>HASSAN OFF 2 TELEGRAM</p></div>
+                        <div class="connect-info"><h4>HASSAN OFC 2</h4><p>HASSAN OFC 2 TELEGRAM</p></div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--subtext-color);"></i>
                 </a>
@@ -1618,6 +1825,35 @@
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--subtext-color);"></i>
                 </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT CORNER FLOATING 3-LINES MENU -->
+    <div class="corner-menu-container">
+        <div class="corner-menu-btn" onclick="toggleCornerMenu()" title="Quick Menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        <div id="corner-menu-dropdown" class="corner-menu-dropdown">
+            <a href="https://whatsapp.com/channel/0029VbDuHz8JJhzb8zf92C1H" target="_blank" class="corner-menu-item">
+                <i class="fa-brands fa-whatsapp" style="color:#25D366; font-size:16px;"></i>
+                <span>DEVELOPMENTS UPDATES</span>
+            </a>
+            <a href="https://whatsapp.com/channel/0029VbE1NH99Bb65S8oOnS47" target="_blank" class="corner-menu-item">
+                <i class="fa-brands fa-whatsapp" style="color:#25D366; font-size:16px;"></i>
+                <span>SOURCE CODES CHANNEL</span>
+            </a>
+            <a href="https://wa.me/923294675242" target="_blank" class="corner-menu-item">
+                <i class="fa-brands fa-whatsapp" style="color:#25D366; font-size:16px;"></i>
+                <span>DEV WA NUM</span>
+            </a>
+            <a href="https://t.me/hassanff01" target="_blank" class="corner-menu-item">
+                <i class="fa-brands fa-telegram" style="color:#229ED9; font-size:16px;"></i>
+                <span>DEV TG ACC</span>
+            </a>
+            <div class="corner-menu-item" style="cursor:default; color:#ff7b00; justify-content:center;">
+                <i class="fa-solid fa-clock"></i>
+                <span>MORE TOOLS COMING SOON</span>
             </div>
         </div>
     </div>
@@ -1825,7 +2061,116 @@
             updateTotalToolsCounter();
             initTypewriterEraserEffect();
             loadSavedFontPreference();
+            loadSavedThemePreference();
         });
+
+        /* ANTI-CODE EXTRACTION & PROTECTION SCRIPT */
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.addEventListener('keydown', e => {
+            if (e.keyCode === 123 || 
+                (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) || 
+                (e.ctrlKey && e.keyCode === 85)) {
+                e.preventDefault();
+                showToast('Source Code Protected 🔒');
+                return false;
+            }
+        });
+
+        /* CORNER MENU TOGGLE */
+        function toggleCornerMenu() {
+            const dropdown = document.getElementById('corner-menu-dropdown');
+            if(dropdown) {
+                dropdown.classList.toggle('active');
+            }
+        }
+
+        // Close corner menu when clicking outside
+        window.addEventListener('click', function(e) {
+            const container = document.querySelector('.corner-menu-container');
+            const dropdown = document.getElementById('corner-menu-dropdown');
+            if(container && dropdown && !container.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
+
+        /* MULTI-STATE THEME SWITCHER LOGIC */
+        function toggleMultiTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-toggle');
+            
+            // Check current theme state
+            if (!body.classList.contains('theme-day') && 
+                !body.classList.contains('theme-golden') && 
+                !body.classList.contains('theme-golden-black') && 
+                !body.classList.contains('theme-white-black')) {
+                // State 1 (Night/Black) -> State 2 (Day/Light Mode with Sun)
+                body.classList.add('theme-day');
+                if(themeIcon) {
+                    themeIcon.className = 'fa-solid fa-sun';
+                }
+                localStorage.setItem('hassan_theme_state', 'day');
+                showToast('Day Mode Activated ☀️');
+            } else if (body.classList.contains('theme-day')) {
+                // State 2 (Day) -> State 3 (Golden Theme)
+                body.classList.remove('theme-day');
+                body.classList.add('theme-golden');
+                if(themeIcon) {
+                    themeIcon.className = 'fa-solid fa-sun';
+                }
+                localStorage.setItem('hassan_theme_state', 'golden');
+                showToast('Golden Theme Activated ✨');
+            } else if (body.classList.contains('theme-golden')) {
+                // State 3 (Golden) -> State 4 (Golden + Black)
+                body.classList.remove('theme-golden');
+                body.classList.add('theme-golden-black');
+                if(themeIcon) {
+                    themeIcon.className = 'fa-solid fa-sun';
+                }
+                localStorage.setItem('hassan_theme_state', 'golden-black');
+                showToast('Golden + Black Theme Activated 🌟');
+            } else if (body.classList.contains('theme-golden-black')) {
+                // State 4 (Golden + Black) -> State 5 (White + Black)
+                body.classList.remove('theme-golden-black');
+                body.classList.add('theme-white-black');
+                if(themeIcon) {
+                    themeIcon.className = 'fa-solid fa-sun';
+                }
+                localStorage.setItem('hassan_theme_state', 'white-black');
+                showToast('White + Black Theme Activated 🖤🤍');
+            } else {
+                // State 5 (White + Black) -> Reset back to Normal Night Mode with Moon
+                body.classList.remove('theme-white-black');
+                if(themeIcon) {
+                    themeIcon.className = 'fa-solid fa-moon';
+                }
+                localStorage.setItem('hassan_theme_state', 'night');
+                showToast('Normal Night Mode Activated 🌙');
+            }
+        }
+
+        function loadSavedThemePreference() {
+            const savedState = localStorage.getItem('hassan_theme_state');
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-toggle');
+            if(!savedState) return;
+
+            body.classList.remove('theme-day', 'theme-golden', 'theme-golden-black', 'theme-white-black');
+            if(savedState === 'day') {
+                body.classList.add('theme-day');
+                if(themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            } else if(savedState === 'golden') {
+                body.classList.add('theme-golden');
+                if(themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            } else if(savedState === 'golden-black') {
+                body.classList.add('theme-golden-black');
+                if(themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            } else if(savedState === 'white-black') {
+                body.classList.add('theme-white-black');
+                if(themeIcon) themeIcon.className = 'fa-solid fa-sun';
+            } else {
+                if(themeIcon) themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
 
         /* GLOBAL FONT SELECTION HANDLER */
         function changeGlobalFont(fontFamily) {
@@ -1936,22 +2281,6 @@
             toast.querySelector('#toast-message').innerText = message;
             toast.classList.add('show');
             setTimeout(() => { toast.classList.remove('show'); }, 3000);
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('light-mode');
-            const themeIcon = document.getElementById('theme-toggle');
-            if(themeIcon) {
-                if(document.body.classList.contains('light-mode')) {
-                    themeIcon.classList.remove('fa-moon');
-                    themeIcon.classList.add('fa-sun');
-                    showToast('Light Mode Activated ☀️');
-                } else {
-                    themeIcon.classList.remove('fa-sun');
-                    themeIcon.classList.add('fa-moon');
-                    showToast('Dark Mode Activated 🌙');
-                }
-            }
         }
 
         function setupSearchFilter() {
