@@ -155,7 +155,7 @@
             height: 100%;
             border-radius: 50%;
             border: 3px solid transparent;
-            border-top-color: #ff7b00;
+            border-top-color: var(--accent-orange);
             border-bottom-color: #ffffff;
             animation: spin 2s linear infinite;
         }
@@ -181,7 +181,7 @@
         @keyframes spin-reverse { 0% { transform: rotate(360deg); } 100% { transform: rotate(0deg); } }
 
         .intro-title { margin-top: 20px; font-size: 22px; font-weight: bold; letter-spacing: 2px; flex-shrink: 0; color: #fff; }
-        .intro-sub { color: #ff7b00; font-size: 12px; letter-spacing: 1.5px; margin-top: 5px; flex-shrink: 0; }
+        .intro-sub { color: var(--accent-orange); font-size: 12px; letter-spacing: 1.5px; margin-top: 5px; flex-shrink: 0; }
 
         /* FUTURISTIC MOBILE UPDATES TOGGLE */
         .futuristic-toggle-container {
@@ -189,7 +189,7 @@
             width: 100%;
             max-width: 360px;
             background: rgba(15, 23, 42, 0.8);
-            border: 1px solid #ff7b00;
+            border: 1px solid var(--accent-orange);
             border-radius: 14px;
             overflow: hidden;
             box-shadow: 0 0 15px rgba(255, 123, 0, 0.3), inset 0 0 10px rgba(255, 123, 0, 0.1);
@@ -198,7 +198,7 @@
         }
 
         .futuristic-toggle-header {
-            background: linear-gradient(90deg, #ff7b00, #ff0055);
+            background: linear-gradient(90deg, var(--accent-orange), #ff0055);
             color: #ffffff;
             padding: 10px 14px;
             font-weight: 800;
@@ -276,7 +276,7 @@
         .btn-close-intro {
             margin-top: 15px;
             padding: 10px 20px;
-            background: linear-gradient(90deg, #ff7b00, #ff4500);
+            background: linear-gradient(90deg, var(--accent-orange), #ff4500);
             border: none;
             border-radius: 20px;
             color: #fff;
@@ -408,7 +408,7 @@
         .font-selector-label {
             font-size: 12px;
             font-weight: bold;
-            color: #ff7b00;
+            color: var(--accent-orange);
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -425,6 +425,27 @@
             outline: none;
             font-size: 12px;
             cursor: pointer;
+        }
+
+        /* COLOR PALETTE PICKER STYLES */
+        .color-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .color-swatch {
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.1);
+            border-color: #fff;
         }
 
         /* HERO & SEARCH */
@@ -483,6 +504,30 @@
 
         .tool-banner img { width: 50px; height: 50px; border-radius: 50%; z-index: 1; object-fit: cover; }
 
+        /* DOUBLE LOGO BANNER FOR SUPER GROK */
+        .double-logo-banner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1;
+        }
+
+        .double-logo-banner img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffd700;
+        }
+
+        .double-logo-banner span {
+            font-weight: 900;
+            font-size: 16px;
+            color: #ffd700;
+            text-shadow: 0 0 5px rgba(255,215,0,0.5);
+        }
+
         .star-icon {
             position: absolute; top: 6px; right: 8px; font-size: 14px; color: var(--subtext-color);
             z-index: 10; cursor: pointer; transition: transform 0.2s, color 0.2s;
@@ -506,6 +551,7 @@
         .badge-stickman { background: #e056fd; }
         .badge-bot { background: #25D366; color: #000; }
         .badge-course { background: #ff9f43; color: #000; }
+        .badge-grok { background: linear-gradient(90deg, #00f3ff, #7a00ff); color: #fff; }
 
         .badge-new::after {
             content: ''; position: absolute; top: -50%; left: -150%; width: 50%; height: 200%;
@@ -534,6 +580,7 @@
         .btn-vali { background: linear-gradient(90deg, #f7b733, #fc4a1a); }
         .btn-stickman { background: linear-gradient(90deg, #e056fd, #686de0); }
         .btn-apk { background: linear-gradient(90deg, #00e6a8, #27c93f); color: #000; }
+        .btn-grok { background: linear-gradient(90deg, #00f3ff, #0051ff); color: #fff; }
 
         .rgb-text {
             font-weight: bold; font-style: italic;
@@ -841,7 +888,7 @@
             </div>
             <div id="futuristic-toggle-content" class="futuristic-toggle-body">
                 🚀 <strong>NEW UPDATES:</strong><br>
-                ✨ <em>Code Extractor & All Social Media Appeal Generator Added!</em>
+                ✨ <em>Super Grok 1 Month Offer & Custom Color Palettes Added!</em>
             </div>
         </div>
 
@@ -852,7 +899,7 @@
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
             <a href="https://t.me/hassanff01" target="_blank" class="intro-channel-btn btn-tg-2">
-                <span><i class="fa-brands fa-telegram"></i> HASSAN OFC 2</span>
+                <span><i class="fa-brands fa-telegram"></i> HASSAN OFF 2</span>
                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </a>
             <a href="https://tiktok.com/@maryo3211" target="_blank" class="intro-channel-btn btn-tt-1">
@@ -949,7 +996,28 @@
         <!-- All Tools Grid Container -->
         <div class="tools-grid">
 
-            <!-- 1ST NEW ITEM: CODE EXTRACTOR -->
+            <!-- SUPER GROK 1 MONTH CARD (TOP) -->
+            <div class="tool-card" data-id="super-grok-1-month">
+                <div class="tool-banner">
+                    <div class="tool-banner-bg"></div>
+                    <i class="fa-regular fa-star star-icon" onclick="toggleFavorite(this, 'SUPER GROK 1 MONTH', 'supergrok-modal')"></i>
+                    <div class="double-logo-banner">
+                        <img src="https://i.ibb.co/Ng9PdyMK/jawadmd.jpg" alt="My Logo">
+                        <span>X</span>
+                        <img src="https://i.ibb.co/FLHyTnCt/IMG-20261111-WA0033.jpg" alt="Other Picture">
+                    </div>
+                </div>
+                <div class="tool-content">
+                    <div>
+                        <div class="tool-title">SUPER GROK 1 MONTH</div>
+                        <span class="badge-new badge-grok">GROK PRO</span>
+                        <div class="tool-desc">Go and active GROK 1 month free by this messege</div>
+                    </div>
+                    <button class="btn-launch btn-grok" onclick="openModal('supergrok-modal')"><i class="fa-solid fa-bolt"></i> GET GROK PRO</button>
+                </div>
+            </div>
+
+            <!-- CODE EXTRACTOR -->
             <div class="tool-card" data-id="code-extractor">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -967,7 +1035,7 @@
                 </div>
             </div>
 
-            <!-- 2ND NEW ITEM: ALL SOCIAL MEDIA APPEAL GENERATOR -->
+            <!-- ALL SOCIAL MEDIA APPEAL GENERATOR -->
             <div class="tool-card" data-id="all-social-appeal-generator">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -985,7 +1053,7 @@
                 </div>
             </div>
 
-            <!-- 1ST NEW ITEM: HASSAN ALL SOCIAL MEDIA'S DOWNLOADER -->
+            <!-- HASSAN ALL SOCIAL MEDIA'S DOWNLOADER -->
             <div class="tool-card" data-id="hassan-all-social-downloader">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1003,7 +1071,7 @@
                 </div>
             </div>
 
-            <!-- 2ND NEW ITEM: HASSAN LINK LOCKER -->
+            <!-- HASSAN LINK LOCKER -->
             <div class="tool-card" data-id="hassan-link-locker">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1021,7 +1089,7 @@
                 </div>
             </div>
 
-            <!-- 1ST CARD: HASSAN HOSTING 2 -->
+            <!-- HASSAN HOSTING 2 -->
             <div class="tool-card" data-id="hassan-hosting-2-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1039,7 +1107,7 @@
                 </div>
             </div>
 
-            <!-- 2ND CARD: LIVE TV -->
+            <!-- LIVE TV -->
             <div class="tool-card" data-id="live-tv-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1057,7 +1125,7 @@
                 </div>
             </div>
 
-            <!-- 3RD CARD: OLD LIVE TV -->
+            <!-- OLD LIVE TV -->
             <div class="tool-card" data-id="old-live-tv-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1075,7 +1143,7 @@
                 </div>
             </div>
 
-            <!-- 4TH CARD: AFZAAL HOSTING -->
+            <!-- AFZAAL HOSTING -->
             <div class="tool-card" data-id="afzaal-hosting-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1093,7 +1161,7 @@
                 </div>
             </div>
 
-            <!-- FIRST TOOL (START): HASSAN HOSTING -->
+            <!-- HASSAN HOSTING -->
             <div class="tool-card" data-id="hassan-hosting-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1111,7 +1179,7 @@
                 </div>
             </div>
 
-            <!-- 1st Tool: TikTok DL -->
+            <!-- TikTok DL -->
             <div class="tool-card" data-id="tt-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1128,7 +1196,7 @@
                 </div>
             </div>
 
-            <!-- Tool: 2D STICKMAN -->
+            <!-- 2D STICKMAN -->
             <div class="tool-card" data-id="stickman-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1145,7 +1213,7 @@
                 </div>
             </div>
 
-            <!-- Tool: TIKTOK VIDEO DOWNLOADER -->
+            <!-- TIKTOK VIDEO DOWNLOADER APK -->
             <div class="tool-card" data-id="apk-1">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1163,7 +1231,7 @@
                 </div>
             </div>
 
-            <!-- Tool: You cut Premium -->
+            <!-- You cut Premium -->
             <div class="tool-card" data-id="apk-2">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1181,7 +1249,7 @@
                 </div>
             </div>
 
-            <!-- Tool: TikTok MOD -->
+            <!-- TikTok MOD -->
             <div class="tool-card" data-id="apk-3">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1199,7 +1267,7 @@
                 </div>
             </div>
 
-            <!-- Tool: Image 2 Link -->
+            <!-- Image 2 Link -->
             <div class="tool-card" data-id="apk-4">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1217,7 +1285,7 @@
                 </div>
             </div>
 
-            <!-- Tool: Inshot MOD -->
+            <!-- Inshot MOD -->
             <div class="tool-card" data-id="apk-5">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1235,7 +1303,7 @@
                 </div>
             </div>
 
-            <!-- Tool: FREE FAKE NUMBERS -->
+            <!-- FREE FAKE NUMBERS -->
             <div class="tool-card" data-id="fake-num-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1253,7 +1321,7 @@
                 </div>
             </div>
 
-            <!-- Tool: PINTEREST VIDEO DOWNLOADER -->
+            <!-- PINTEREST VIDEO DOWNLOADER -->
             <div class="tool-card" data-id="pinterest-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1271,7 +1339,7 @@
                 </div>
             </div>
 
-            <!-- Tool: WA CHANNEL REACTS -->
+            <!-- WA CHANNEL REACTS -->
             <div class="tool-card" data-id="wa-reacts-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1289,7 +1357,7 @@
                 </div>
             </div>
 
-            <!-- Tool: PRO BOY FREE HOSTING -->
+            <!-- PRO BOY FREE HOSTING -->
             <div class="tool-card" data-id="pro-host-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1307,7 +1375,7 @@
                 </div>
             </div>
 
-            <!-- Tool: HASSAN VIRAL TOOLKIT -->
+            <!-- HASSAN VIRAL TOOLKIT -->
             <div class="tool-card" data-id="viral-toolkit-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1325,7 +1393,7 @@
                 </div>
             </div>
 
-            <!-- Tool: CAPCUT PRO -->
+            <!-- CAPCUT PRO -->
             <div class="tool-card" data-id="capcut-pro-tool">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1343,7 +1411,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: Alyan Automation Batch 1 -->
+            <!-- Alyan Automation Batch 1 -->
             <div class="tool-card" data-id="alyan-auto">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1361,7 +1429,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: YouTube Masterclass -->
+            <!-- YouTube Masterclass -->
             <div class="tool-card" data-id="yt-masterclass">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1379,7 +1447,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: YouTube Empire Builder -->
+            <!-- YouTube Empire Builder -->
             <div class="tool-card" data-id="yt-empire">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1397,7 +1465,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: Cybersecurity Complete Course -->
+            <!-- Cybersecurity Complete Course -->
             <div class="tool-card" data-id="cyber-sec">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1415,7 +1483,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: 1-40+ Courses -->
+            <!-- 1-40+ Courses -->
             <div class="tool-card" data-id="courses-40">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1433,7 +1501,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: 5TB Data -->
+            <!-- 5TB Data -->
             <div class="tool-card" data-id="data-5tb">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1451,7 +1519,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: 15 Million Digital Products -->
+            <!-- 15 Million Digital Products -->
             <div class="tool-card" data-id="products-15m">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1469,7 +1537,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: 200TB Data -->
+            <!-- 200TB Data -->
             <div class="tool-card" data-id="data-200tb">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1487,7 +1555,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: 1000 Ai Stories Reels Bundle -->
+            <!-- 1000 Ai Stories Reels Bundle -->
             <div class="tool-card" data-id="ai-stories-reels">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1649,7 +1717,7 @@
                 </div>
             </div>
 
-            <!-- NEW TOOL: HASSAN TIKTOK VIDEO DOWNLOADER -->
+            <!-- HASSAN TIKTOK VIDEO DOWNLOADER -->
             <div class="tool-card" data-id="hassan-ttvd-web">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1669,7 +1737,7 @@
                 </div>
             </div>
 
-            <!-- TOOL: HASSAN ASITHA TUTORIAL -->
+            <!-- HASSAN ASITHA TUTORIAL -->
             <div class="tool-card" data-id="hassan-asitha-tutorial">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1689,7 +1757,7 @@
                 </div>
             </div>
 
-            <!-- NEWLY ADDED TOOL: HASSAN PORTFOLIO -->
+            <!-- HASSAN PORTFOLIO -->
             <div class="tool-card" data-id="hassan-portfolio">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1709,7 +1777,7 @@
                 </div>
             </div>
 
-            <!-- TOOL: SATISFYING CEMENT CRAFT PROMPT -->
+            <!-- SATISFYING CEMENT CRAFT PROMPT -->
             <div class="tool-card" data-id="cement-craft-garden-prompt">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1727,7 +1795,7 @@
                 </div>
             </div>
 
-            <!-- UPDATED TOOL: GIT & YT INFO FETCHER -->
+            <!-- GIT & YT INFO FETCHER -->
             <div class="tool-card" data-id="git-yt-info-fetcher">
                 <div class="tool-banner">
                     <div class="tool-banner-bg"></div>
@@ -1779,7 +1847,7 @@
                 <a href="https://t.me/hassanff01" target="_blank" class="connect-card">
                     <div class="connect-left">
                         <div class="connect-icon icon-tg"><i class="fa-brands fa-telegram"></i></div>
-                        <div class="connect-info"><h4>HASSAN OFC 2</h4><p>HASSAN OFC 2 TELEGRAM</p></div>
+                        <div class="connect-info"><h4>HASSAN OFF 2</h4><p>HASSAN OFF 2 TELEGRAM</p></div>
                     </div>
                     <i class="fa-solid fa-arrow-up-right-from-square" style="color: var(--subtext-color);"></i>
                 </a>
@@ -1896,6 +1964,23 @@
                 </select>
             </div>
 
+            <!-- ACCENT COLOR PALETTE CUSTOMIZER -->
+            <div class="font-selector-wrapper">
+                <div class="font-selector-label">
+                    <i class="fa-solid fa-palette"></i> Accent Color Customizer
+                </div>
+                <div class="color-picker-grid">
+                    <div class="color-swatch" style="background: #00ffff;" onclick="setCustomAccentColor('#00ffff')" title="Cyan"></div>
+                    <div class="color-swatch" style="background: #ff7b00;" onclick="setCustomAccentColor('#ff7b00')" title="Orange"></div>
+                    <div class="color-swatch" style="background: #ffd700;" onclick="setCustomAccentColor('#ffd700')" title="Gold"></div>
+                    <div class="color-swatch" style="background: #ff0055;" onclick="setCustomAccentColor('#ff0055')" title="Neon Pink"></div>
+                    <div class="color-swatch" style="background: #00e6a8;" onclick="setCustomAccentColor('#00e6a8')" title="Mint Green"></div>
+                    <div class="color-swatch" style="background: #9d00ff;" onclick="setCustomAccentColor('#9d00ff')" title="Purple"></div>
+                    <div class="color-swatch" style="background: #0088ff;" onclick="setCustomAccentColor('#0088ff')" title="Electric Blue"></div>
+                    <div class="color-swatch" style="background: #ff3333;" onclick="setCustomAccentColor('#ff3333')" title="Bright Red"></div>
+                </div>
+            </div>
+
             <div class="dots-menu-item" onclick="openModal('faq-modal'); toggle3DotsModal();">
                 <i class="fa-solid fa-circle-question" style="color:#ff7b00;"></i> FAQ & Help
             </div>
@@ -1908,6 +1993,40 @@
             <a href="https://whatsapp.com/channel/0029VbDRJh789ine9bjCVF3m" target="_blank" class="dots-menu-item">
                 <i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> WhatsApp
             </a>
+        </div>
+    </div>
+
+    <!-- SUPER GROK 1 MONTH DEDICATED MODAL -->
+    <div id="supergrok-modal" class="modal">
+        <div class="terminal-window">
+            <div class="terminal-topbar">
+                <div class="terminal-dots"><div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div></div>
+                <div class="terminal-path">~/hassan-toolkit/super-grok-pro</div>
+                <div class="terminal-close" onclick="closeModal('supergrok-modal')">&times;</div>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-logo-area">
+                    <div class="terminal-brand"><i class="fa-solid fa-bolt" style="color:#00f3ff;"></i> SUPER GROK PRO</div>
+                    <div class="terminal-subtitle">// 1 MONTH MEMBERSHIP GUIDE</div>
+                </div>
+                <div style="font-size: 11.5px; line-height: 1.6; color: #ddd; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; border: 1px solid var(--card-border);">
+                    🎁 <strong>SuperGrok — Get a 1-month free membership.</strong><br><br>
+                    📋 <strong>Steps:</strong><br>
+                    1. Prepare a new account that you haven't used before.<br>
+                    2. Use a US or Indian IP address.<br>
+                    3. Open the activation link: <a href="https://grok.com" target="_blank" style="color:#00f3ff; text-decoration:underline;">https://grok.com</a><br>
+                    4. Confirm that the "One Month Free" offer appears on the page.<br><br>
+                    If the link is invalid, you can participate in the MLH Builders Week event to obtain a new activation link:<br>
+                    <a href="https://events.mlh.com/events/14729-global-hack-week-builders-week" target="_blank" style="color:#ff7b00; text-decoration:underline;">https://events.mlh.com/events/14729-global-hack-week-builders-week</a><br><br>
+                    🚀 <em>Don't wait, hurry!</em>
+                </div>
+                <div style="margin-top: 15px;">
+                    <a href="https://grok.com" target="_blank" class="btn-terminal" style="text-align:center; text-decoration:none; display:block; margin-bottom: 8px;">
+                        <i class="fa-solid fa-globe"></i> Open Grok.com
+                    </a>
+                </div>
+                <div class="terminal-footer">powered by <span>hassan toolkit</span></div>
+            </div>
         </div>
     </div>
 
@@ -2062,6 +2181,7 @@
             initTypewriterEraserEffect();
             loadSavedFontPreference();
             loadSavedThemePreference();
+            loadSavedAccentColor();
         });
 
         /* ANTI-CODE EXTRACTION & PROTECTION SCRIPT */
@@ -2169,6 +2289,20 @@
                 if(themeIcon) themeIcon.className = 'fa-solid fa-sun';
             } else {
                 if(themeIcon) themeIcon.className = 'fa-solid fa-moon';
+            }
+        }
+
+        /* CUSTOM ACCENT COLOR PALETTE HANDLER */
+        function setCustomAccentColor(colorHex) {
+            document.documentElement.style.setProperty('--accent-orange', colorHex);
+            localStorage.setItem('hassan_custom_accent', colorHex);
+            showToast('Accent Color Updated 🎨');
+        }
+
+        function loadSavedAccentColor() {
+            const savedColor = localStorage.getItem('hassan_custom_accent');
+            if(savedColor) {
+                document.documentElement.style.setProperty('--accent-orange', savedColor);
             }
         }
 
